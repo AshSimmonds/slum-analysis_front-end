@@ -44,7 +44,7 @@ export function ProfileForm({ session }: Props) {
         updated_at: new Date(),
       }
 
-      const { error } = await supabase.from('profiles').upsert(updates, {
+      const { error } = await supabase.from('profile').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
       })
 

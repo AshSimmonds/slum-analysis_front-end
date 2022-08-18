@@ -42,7 +42,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["profiles"][];
+          schema: definitions["profile"][];
         };
         /** Partial Content */
         206: unknown;
@@ -52,7 +52,7 @@ export interface paths {
       parameters: {
         body: {
           /** profiles */
-          profiles?: definitions["profiles"];
+          profiles?: definitions["profile"];
         };
         query: {
           /** Filtering Columns */
@@ -98,7 +98,7 @@ export interface paths {
         };
         body: {
           /** profiles */
-          profiles?: definitions["profiles"];
+          profiles?: definitions["profile"];
         };
         header: {
           /** Preference */
@@ -114,7 +114,7 @@ export interface paths {
 }
 
 export interface definitions {
-  profiles: {
+  profile: {
     /**
      * Format: uuid
      * @description Note:
@@ -166,7 +166,7 @@ export interface parameters {
   /** @description Limiting and Pagination */
   limit: string;
   /** @description profiles */
-  "body.profiles": definitions["profiles"];
+  "body.profiles": definitions["profile"];
   /** Format: uuid */
   "rowFilter.profiles.id": string;
   /** Format: timestamp with time zone */

@@ -21,7 +21,7 @@ export function useProfile(session: AuthSession) {
         const user = supabase.auth.user()!
 
         const { data, error, status } = await supabase
-          .from<definitions['profiles']>('profiles')
+          .from<definitions['profile']>('profile')
           .select(`username, website, avatar_url`)
           .eq('id', user.id)
           .single()
