@@ -1,3 +1,5 @@
+# slummin
+
 This project is a Next.js starter with:
 
 - TypeScript
