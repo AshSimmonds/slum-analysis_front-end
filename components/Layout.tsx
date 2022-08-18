@@ -3,6 +3,22 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import { Menu } from './Menu'
+import { ThemeProvider } from 'next-themes'
+
+import 'tailwindcss/tailwind.css'
+import { useTheme } from 'next-themes'
+const ThemeChanger = () => {
+  const { theme, setTheme } = useTheme()
+
+  return (
+    <div>
+      The current theme is: {theme}
+      <button className="btn" onClick={() => setTheme('light')}>Light Mode</button>
+      <button className="btn" onClick={() => setTheme('dark')}>Dark Mode</button>
+    </div>
+  )
+}
+
 
 export interface Props {
   session: AuthSession | null
@@ -12,24 +28,25 @@ export function Layout({ session, children }: PropsWithChildren<Props>) {
   return (
     <>
       <Head>
-        <title>Next.js + TypeScript + Supabase + TailwindCSS</title>
+        <title>Slum Analysis</title>
       </Head>
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        <header className="p-4 border-b bg-white flex justify-between">
-          <h1>
-            <Link href="/">
-              <a className="text-red-800 hover:text-red-700 drop-shadow">
-                Next.js + TypeScript + Supabase + TailwindCSS
-              </a>
-            </Link>
-          </h1>
-          <Menu session={session} />
-        </header>
-        <main className="flex-1 p-4">{children}</main>
-        <footer className="bg-sky-700 text-white p-4">
-          Powered by Next.js &amp; Supabase
-        </footer>
-      </div>
+
+      <ThemeProvider defaultTheme="system">
+
+        <div className="flex flex-col min-h-screen "  >
+          <header className="p-4 border-b flex justify-between">
+            <Link href="/" className="font-bold text-2xl">Slum Analysis</Link>
+            <ThemeChanger />
+            <Menu session={session} />
+          </header>
+          <main className="flex-1 p-4">{children}</main>
+          <footer className="bg-sky-700 text-white p-4">
+            Powered by Next.js &amp; Supabase
+          </footer>
+        </div>
+
+      </ThemeProvider>
+
     </>
   )
 }
