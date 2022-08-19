@@ -23,10 +23,10 @@ export function NewInspection() {
                         // name: 'New Inspection',
                     })
 
-                    if (newInspectionData.data) {
-                        console.log('useInspection.ts - newInspectionData.data', newInspectionData.data)
-                        setInspection(newInspectionData.data[0])
-                    }
+                if (newInspectionData.data) {
+                    console.log('useInspection.ts - newInspectionData.data', newInspectionData.data)
+                    setInspection(newInspectionData.data[0])
+                }
 
             } catch (newInspectionError: any) {
                 setError(newInspectionError)
@@ -106,9 +106,11 @@ export function GetInspections(session: AuthSession) {
 
                 const { data, error, status } = await db
                     .inspections()
-                    .select('*')
-                // .eq('id', user.id)
-                // .single()
+                    .select(`
+                        *,
+                        house:house_id (*)
+                    `)
+
 
                 if (error && status !== 406) {
                     throw error

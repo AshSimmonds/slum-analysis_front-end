@@ -1265,6 +1265,7 @@ export interface definitions {
     description?: string;
   };
   inspection: {
+    house: any;
     /**
      * Format: bigint
      * @description Note:
