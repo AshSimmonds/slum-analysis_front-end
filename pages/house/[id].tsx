@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react'
 import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
 import { GetHouse } from '../../utils/hooks/useHouse'
-
+import { House } from '../../types/ash'
 
 export interface Props {
     session: AuthSession
 }
-
 
 export default function HouseForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
@@ -16,16 +15,21 @@ export default function HouseForm({ session }: Props) {
     const [notes, setNotes] = useState<string>('')
     const [construct_date, setConstructDate] = useState<string>('')
 
-    const router = useRouter()
 
-    let houseId = Number(router.query.id)
 
-    // TODO: deal with missing number better than this dumbass
-    if (isNaN(houseId)) {
-        houseId = 666
-    }
+    const { query, isReady } = useRouter()
+
+    // if (!isReady) {
+    //     return
+    //     <>
+    //         Loading
+    //     </>
+    // }
+
+    const houseId = Number(query.id)
 
     const { loading, error, house } = GetHouse(session, houseId)
+
 
     useEffect(() => {
         if (house) {
@@ -76,12 +80,13 @@ export default function HouseForm({ session }: Props) {
         }
     }
 
+
     if (loading) {
         return <p>Loading…</p>
     }
 
     if (error) {
-        return <p>Error: </p>
+        return <p>Error fetching house data.</p>
     }
 
 
@@ -103,7 +108,7 @@ export default function HouseForm({ session }: Props) {
                         className="field"
                         id="address"
                         type="text"
-                        value={address}
+                        value={address || ''}
                         onChange={(e) => setAddress(e.target.value)}
 
                     />
@@ -117,7 +122,7 @@ export default function HouseForm({ session }: Props) {
                         disabled={updating}
                         id="notes"
                         type="text"
-                        value={notes}
+                        value={notes || ''}
                         onChange={(e) => setNotes(e.target.value)}
                     />
                 </div>
@@ -130,7 +135,7 @@ export default function HouseForm({ session }: Props) {
                         disabled={updating}
                         id="construct_date"
                         type="text"
-                        value={construct_date}
+                        value={construct_date || ''}
                         onChange={(e) => setConstructDate(e.target.value)}
                     />
                 </div>
@@ -141,7 +146,8 @@ export default function HouseForm({ session }: Props) {
                         onClick={() => updateHouse({ address, notes, construct_date })}
                         disabled={updating}
                     >
-                        {updating ? 'Updating…' : 'Update'}
+                        {/* {updating ? 'Updating…' : 'Update'} */}
+                        Update
                     </button>
                 </div>
             </form>

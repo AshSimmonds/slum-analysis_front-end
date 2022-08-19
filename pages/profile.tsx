@@ -3,13 +3,13 @@ import { ProfileForm } from '../components/ProfileForm'
 import { useSession } from '../utils/hooks/useSession'
 
 export default function ProfilePage() {
-  const session = useSession()
+    const session = useSession()
 
-  if (!session) return null
+    if (!session) return null
 
-  return (
-    <Layout session={session}>
-      <ProfileForm session={session} />
-    </Layout>
-  )
+    return (
+        <Layout session={session}>
+            <ProfileForm session={session} />
+        </Layout>
+    )
 }

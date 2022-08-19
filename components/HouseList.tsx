@@ -9,7 +9,7 @@ export interface Props {
 }
 
 
-export default function HouseList({ session }: Props) {
+export default function HouseList(  { session }: Props) {
     const { loading, error, houses } = GetHouses(session)
 
     const listOfHouses = houses ? houses.map((house: House) => {
