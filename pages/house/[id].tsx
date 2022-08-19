@@ -2,6 +2,7 @@ import { AuthSession } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
 import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
+import Router from 'next/router'
 import { GetHouse } from '../../utils/hooks/useHouse'
 import { House } from '../../types/ash'
 import { Layout } from '../../components/Layout'
@@ -83,6 +84,38 @@ export default function HouseForm({ session }: Props) {
     }
 
 
+
+
+
+
+
+    async function deleteHouse() {
+        try {
+            setUpdating(true)
+
+            const { data, error } = await db
+                .houses()
+                .delete()
+                .eq('id', houseId)
+
+            if (error) {
+                throw error
+            }
+        } catch (error: any) {
+            alert(error.message)
+        } finally {
+            setUpdating(false)
+
+            // Redirect to the list of houses
+            Router.push('/house')
+        }
+    }
+
+
+
+
+
+
     if (loading) {
         return <p>Loading…</p>
     }
@@ -151,10 +184,24 @@ export default function HouseForm({ session }: Props) {
                         {updating ? 'Updating…' : 'Update'}                        
                     </button>
                 </div>
+
+
+
+
+                <div>
+                    <button
+                        className="btn btn-error btn-sm"
+                        onClick={() => deleteHouse( )}
+                        disabled={updating}
+                    >
+                        {updating ? 'Updating…' : 'Delete'}                        
+                    </button>
+                </div>
+
             </form>
 
         </div>
-    ) : null
+    ) : <h2>nope</h2>
 
 
 

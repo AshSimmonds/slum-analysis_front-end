@@ -11,7 +11,7 @@ import { useSession } from '../utils/hooks/useSession'
 export function Menu() {
     const session = useSession()
 
-    console.log('Menu - session', session)
+    // console.log('Menu - session', session)
 
     return (
 
