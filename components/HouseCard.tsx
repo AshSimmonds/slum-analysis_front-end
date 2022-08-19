@@ -9,7 +9,7 @@ import { House } from '../types/ash'
 // export default function HouseCard({ session }: Props, house: House) {
 export default function HouseCard(house: House) {
     return (
-        <div className='my-4' >
+        <div key={house.id} className='my-4' >
             <h2>Address: <Link href={`/house/${house.id}`}>{house.address || 'new'}</Link></h2>
             <p>ID: {house.id}</p>
             <p>Notes: {house.notes}</p>
