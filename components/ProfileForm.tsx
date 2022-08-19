@@ -1,4 +1,5 @@
 import { AuthSession } from '@supabase/supabase-js'
+import Router from 'next/router'
 import { useState, useEffect } from 'react'
 import { useProfile } from '../utils/hooks/useProfile'
 import { supabase } from '../utils/supabaseClient'
@@ -117,6 +118,19 @@ export function ProfileForm({ session }: Props) {
                     {updating ? 'Updating…' : 'Update'}
                 </button>
             </div>
+
+
+            <button
+                className="btn-link"
+                onClick={() => {
+                    supabase.auth.signOut()
+                    Router.push('/')
+                }}
+            >
+                Sign out
+            </button>
         </form>
+
+
     )
 }

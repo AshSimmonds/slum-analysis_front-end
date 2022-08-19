@@ -94,7 +94,7 @@ const HeaderHyperUI = (session: AuthSession | null) => {
                             <div className="sm:gap-4 sm:flex">
 
                                 <ThemeChanger />
-                                <Menu session={session} />
+                                <Menu />
 
                             </div>
 
@@ -142,7 +142,7 @@ const HeaderScastiel = (session: AuthSession | null) => {
                     /
                 </Link>
                 <ThemeChanger />
-                <Menu session={session} />
+                <Menu />
             </header>
         </>
 

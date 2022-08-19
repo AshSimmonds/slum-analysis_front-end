@@ -5,19 +5,19 @@ import { SigninForm } from '../components/SigninForm'
 import { useSession } from '../utils/hooks/useSession'
 
 export default function SigninPage() {
-  const session = useSession()
+    const session = useSession()
 
-  useEffect(() => {
-    if (session) {
-      Router.push('/')
-    }
-  })
+    useEffect(() => {
+        if (session) {
+            Router.push('/profile')
+        }
+    })
 
-  if (session) return null
+    if (session) return null
 
-  return (
-    <Layout session={session}>
-      <SigninForm />
-    </Layout>
-  )
+    return (
+        <Layout session={session}>
+            <SigninForm />
+        </Layout>
+    )
 }
