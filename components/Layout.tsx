@@ -181,7 +181,7 @@ export function Layout(this: any, { session, children }: PropsWithChildren<Props
 
                     <HeaderHyperUI access_token={''} token_type={''} user={null} />
 
-                    <main className="flex-1 p-4 prose lg:prose-xl">{children}</main>
+                    <main className="flex-1 p-4 prose sm:prose-sm md:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl">{children}</main>
 
                     <footer className="footer footer-center p-4 bg-base-300 text-base-content">
                         <div>
