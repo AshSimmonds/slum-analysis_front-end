@@ -1,7 +1,8 @@
 import { AuthSession } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
-import { House } from '../types/ash'
-import { db } from '../utils/db'
+import { House } from '../../types/ash'
+import { db } from '../../utils/db'
+import { useRouter } from 'next/router'
 
 export interface Props {
     session: AuthSession
@@ -10,8 +11,13 @@ export interface Props {
 
 export default function HouseList({ session }: Props) {
     const [loading, setLoading] = useState(false)
+    const [updating, setUpdating] = useState(false)
     const [error, setError] = useState<any | null>(null)
-    const [houses, setHouses] = useState<House[] | null>(null)
+    const [house, setHouse] = useState<House | null>(null)
+
+    const router = useRouter()
+
+    const houseId = router.query.id
 
     useEffect(() => {
         ; (async function () {
@@ -21,13 +27,14 @@ export default function HouseList({ session }: Props) {
                 const { data, error, status } = await db
                     .houses()
                     .select('*')
+                    .eq('id', houseId)
 
                 if (error && status !== 406) {
                     throw error
                 }
 
                 if (data) {
-                    setHouses(data)
+                    setHouse(data[0])
                 }
 
             } catch (error: any) {
@@ -38,29 +45,27 @@ export default function HouseList({ session }: Props) {
         })()
     }, [session])
 
-    // console.log('asdf', houses)
+    console.log('house', house)
 
-    const listOfHouses = houses ? houses.map((house: House) => {
-        return (
+    const houseEditForm = house ?? null ? ( 
             <div key={house.id} className='my-4'>
                 <h2>Address: {house.address}</h2>
                 <p>ID: {house.id}</p>
                 <p>Notes: {house.notes}</p>
                 <p>Construction date: {house.construct_date}</p>
             </div>
-        )
+        ) : null
 
-    }) : null
+    
 
     return (
-        <div >
-            <h1>Houses</h1>
+        <>
+            <h1>House: #{houseId}</h1>
 
-            {listOfHouses}
+            {houseEditForm}
 
-            <h4>Total: {listOfHouses?.length}</h4>
 
-        </div>
+        </>
     );
 }
 
