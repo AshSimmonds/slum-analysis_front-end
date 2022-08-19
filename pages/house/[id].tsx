@@ -148,8 +148,7 @@ export default function HouseForm({ session }: Props) {
                         onClick={() => updateHouse({ address, notes, construct_date })}
                         disabled={updating}
                     >
-                        {/* {updating ? 'Updating…' : 'Update'} */}
-                        Update
+                        {updating ? 'Updating…' : 'Update'}                        
                     </button>
                 </div>
             </form>
