@@ -26,14 +26,15 @@ export default function HouseList(  { session }: Props) {
 
 
     return (
-        <div >
+        <>
             <h1>Houses</h1>
+            <h4>Total: {listOfHouses?.length}</h4>
 
             {listOfHouses}
 
             <h4>Total: {listOfHouses?.length}</h4>
 
-        </div>
+        </>
     );
 }
 

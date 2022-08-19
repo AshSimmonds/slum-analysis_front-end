@@ -11,12 +11,12 @@ export default function HousePage() {
 
     return (
         <Layout session={session}>
-            <button
-                className="btn">
-                <Link href="/house/new">
+            <Link href="/house/new">
+                <button
+                    className="btn">
                     New
-                </Link>
-            </button>
+                </button>
+            </Link>
 
             <HouseList session={session} />
         </Layout>

@@ -4,6 +4,8 @@ import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
 import { GetHouse } from '../../utils/hooks/useHouse'
 import { House } from '../../types/ash'
+import { Layout } from '../../components/Layout'
+import Link from 'next/link'
 
 export interface Props {
     session: AuthSession
@@ -158,13 +160,21 @@ export default function HouseForm({ session }: Props) {
 
 
     return (
-        <>
+
+        <Layout session={session}>
+            <Link href="/house">
+                <button
+                    className="btn">
+                    Houses
+                </button>
+            </Link>
+
             <h1>House: #{houseId}</h1>
 
             {houseEditForm}
 
+        </Layout>
 
-        </>
     );
 }
 
