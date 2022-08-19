@@ -20,21 +20,20 @@ export default function HouseForm({ session }: Props) {
 
     let houseId = Number(router.query.id)
 
+    // TODO: deal with missing number better than this dumbass
     if (isNaN(houseId)) {
         houseId = 666
     }
 
     const { loading, error, house } = GetHouse(session, houseId)
 
-
-
     useEffect(() => {
         if (house) {
-            setAddress(address)
-            setNotes(notes)
-            setConstructDate(construct_date)
+            setAddress(house.address!)
+            setNotes(house.notes!)
+            setConstructDate(house.construct_date!)
         }
-    }, [address, construct_date, house, notes])
+    }, [house])
 
     async function updateHouse({
         address,
@@ -47,19 +46,25 @@ export default function HouseForm({ session }: Props) {
     }) {
         try {
             setUpdating(true)
-            // const user = supabase.auth.user()!
 
             const updates = {
-                // id: houseId,
                 address,
                 notes,
                 construct_date,
-                // updated_at: new Date(),
             }
 
-            const { error } = await db.houses().upsert(updates, {
-                returning: 'minimal', // Don't return the value after inserting
-            })
+            console.log(updates)
+
+            const { data, error } = await db
+                .houses()
+                .update
+                (updates, {
+
+                })
+                .eq('id', houseId)
+
+            console.log('data', data)
+            console.log('error', error)
 
             if (error) {
                 throw error
@@ -78,13 +83,6 @@ export default function HouseForm({ session }: Props) {
     if (error) {
         return <p>Error: </p>
     }
-
-
-
-
-    console.log(house)
-
-
 
 
     const houseEditForm = house ?? null ? (

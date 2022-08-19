@@ -43,9 +43,9 @@ export function GetHouse(session: AuthSession, houseId: number) {
     })()
   }, [houseId, session])
 
-  console.log('loadingasdf', loading)
-  console.log('errorasdf', error)
-  console.log('houseasdf', house)
+  // console.log('loadingasdf', loading)
+  // console.log('errorasdf', error)
+  // console.log('houseasdf', house)
 
   return { loading, error, house }
 
