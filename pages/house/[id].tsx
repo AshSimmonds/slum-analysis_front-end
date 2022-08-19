@@ -43,7 +43,7 @@ export default function HouseList({ session }: Props) {
                 setLoading(false)
             }
         })()
-    }, [session])
+    }, [houseId, session])
 
     console.log('house', house)
 

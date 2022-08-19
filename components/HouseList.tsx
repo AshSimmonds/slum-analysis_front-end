@@ -1,4 +1,5 @@
 import { AuthSession } from '@supabase/supabase-js'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { House } from '../types/ash'
 import { db } from '../utils/db'
@@ -42,8 +43,9 @@ export default function HouseList({ session }: Props) {
 
     const listOfHouses = houses ? houses.map((house: House) => {
         return (
-            <div key={house.id} className='my-4'>
-                <h2>Address: {house.address}</h2>
+// onclick navigate to house page with id
+            <div key={house.id} className='my-4' >
+                <h2>Address: <Link href={`/house/${house.id}`}>{house.address}</Link></h2>
                 <p>ID: {house.id}</p>
                 <p>Notes: {house.notes}</p>
                 <p>Construction date: {house.construct_date}</p>
