@@ -18,13 +18,15 @@ export default function HouseForm({ session }: Props) {
 
     const router = useRouter()
 
-    const houseId = Number(router.query.id)
+    let houseId = Number(router.query.id)
 
-    // console.log(houseId)
+    if (isNaN(houseId)) {
+        houseId = 666
+    }
 
     const { loading, error, house } = GetHouse(session, houseId)
 
-   
+
 
     useEffect(() => {
         if (house) {

@@ -12,10 +12,15 @@ export function GetHouse(session: AuthSession, houseId: number) {
   const [error, setError] = useState<any | null>(null)
   const [house, setHouse] = useState<House | null>(null)
 
+
   useEffect(() => {
     ; (async function () {
       try {
         setLoading(true)
+
+        if (!houseId) {
+          throw new Error('No houseId provided')
+        }
 
         const { data, error, status } = await db
           .houses()
@@ -38,11 +43,12 @@ export function GetHouse(session: AuthSession, houseId: number) {
     })()
   }, [houseId, session])
 
-  console.log('loading', loading)
-  console.log('error', error)
-  console.log('house', house)
+  console.log('loadingasdf', loading)
+  console.log('errorasdf', error)
+  console.log('houseasdf', house)
 
   return { loading, error, house }
+
 }
 
 
