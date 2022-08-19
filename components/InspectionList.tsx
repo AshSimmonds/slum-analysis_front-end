@@ -12,7 +12,7 @@ export interface Props {
 
 // TODO: figure out how the hell this works (been working 18 hours now and can't fathom)
 function houseMagick(house: { id: number; created_at?: string | undefined; address?: string | undefined; notes?: string | undefined; construct_date?: string | undefined }): JSX.Element {
-    return <HouseCard id={house.id} address={house.address} />
+    return <HouseCard key={house.id} id={house.id} address={house.address} notes={house.notes} created_at={house.created_at} construct_date={house.construct_date} />
 }
 
 
