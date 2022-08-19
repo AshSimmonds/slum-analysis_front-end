@@ -5,8 +5,13 @@ import { PropsWithChildren } from 'react'
 import { Menu } from './Menu'
 import { ThemeProvider } from 'next-themes'
 
+export interface Props {
+    session: AuthSession | null
+}
+
 import 'tailwindcss/tailwind.css'
 import { useTheme } from 'next-themes'
+
 const ThemeChanger = () => {
     const { theme, setTheme } = useTheme()
 
@@ -27,31 +32,161 @@ const ThemeChanger = () => {
 }
 
 
-export interface Props {
-    session: AuthSession | null
+
+
+const HeaderHyperUI = (session: AuthSession | null) => {
+
+    return (
+        <>
+
+            <header className="border-b border-accent bg-base-300 text-base-content" >
+                <div
+                    className="flex items-center h-16 max-w-screen-xl gap-8 px-4 mx-auto sm:px-6 lg:px-8"
+                >
+                    <Link href="/">
+                        Home
+                    </Link>
+
+                    <div className="flex items-center justify-end flex-1 md:justify-between">
+                        <nav className="hidden md:block" aria-labelledby="header-navigation">
+                            <h2 className="sr-only" id="header-navigation">Header navigation</h2>
+
+                            <ul className="flex items-center gap-6 text-sm">
+                                <li>
+                                    <Link className="" href="/Link01">
+                                        Link01
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link className="" href="/Link02">
+                                        Link02
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link className="" href="/Link03">
+                                        Link03
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link className="" href="/Link04">
+                                        Link04
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link className="" href="/Link05">
+                                        Link05
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link className="" href="/Link06">
+                                        Link06
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div className="flex items-center gap-4">
+                            <div className="sm:gap-4 sm:flex">
+
+                                <ThemeChanger />
+                                <Menu session={session} />
+
+                            </div>
+
+                            <button
+                                className="block p-2.5 rounded md:hidden transition"
+                            >
+                                <span className="sr-only">Toggle menu</span>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header >
+        </>
+
+    )
 }
 
-export function Layout({ session, children }: PropsWithChildren<Props>) {
+
+
+
+
+
+
+const HeaderScastiel = (session: AuthSession | null) => {
+
+    return (
+
+        <>
+            <header className="p-4 border-b flex justify-between bg-base-300 text-base-content">
+                <Link href="/" className="font-bold text-2xl">
+                    /
+                </Link>
+                <ThemeChanger />
+                <Menu session={session} />
+            </header>
+        </>
+
+    )
+
+}
+
+
+
+
+
+
+
+
+
+
+export function Layout(this: any, { session, children }: PropsWithChildren<Props>) {
+
+    const searchBarProps = {
+        session: session
+    }
+
+
     return (
         <>
             <Head>
                 <title>Slum Analysis</title>
-
-
-
             </Head>
 
             <ThemeProvider defaultTheme="system">
 
                 <div className="flex flex-col min-h-screen "  >
-                    <header className="p-4 border-b flex justify-between">
-                        <Link href="/" className="font-bold text-2xl">Slum Analysis</Link>
-                        <ThemeChanger />
-                        <Menu session={session} />
-                    </header>
+
+
+                    {/* <HeaderScastiel access_token={''} token_type={''} user={null} {...searchBarProps} /> */}
+
+                    <HeaderHyperUI access_token={''} token_type={''} user={null} />
+
                     <main className="flex-1 p-4">{children}</main>
-                    <footer className="bg-sky-700 text-white p-4">
-                        Powered by Next.js &amp; Supabase
+
+                    <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+                        <div>
+                            <Link href={"/"}>JBPS | Blue Dwarf</Link>
+                        </div>
                     </footer>
                 </div>
 
