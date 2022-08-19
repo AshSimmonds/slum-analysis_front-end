@@ -16,6 +16,7 @@ export default function InspectionList(  { session }: Props) {
         return (
             <div key={inspection.id} className='my-4' >
                 <h2>ID: <Link href={`/inspection/${inspection.id}`}>{inspection.id}</Link></h2>
+                <p>House: {inspection.house_id}</p>
                 <p>Notes: {inspection.notes}</p>
                 <p>Inspection date: {inspection.inspection_date}</p>
             </div>
