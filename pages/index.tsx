@@ -6,7 +6,7 @@ export default function Home() {
 
     return (
         <Layout session={session}>
-            <h1>Welcome!</h1>
+            <h1>Home stuff</h1>
 
             <div className="p-10 bg-base-100 text-base-content">
                 <button className="btn">button</button>

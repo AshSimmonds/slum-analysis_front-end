@@ -59,8 +59,8 @@ const HeaderHyperUI = (session: AuthSession | null) => {
                                 </li>
 
                                 <li>
-                                    <Link className="" href="/Link02">
-                                        Link02
+                                    <Link className="" href="/house">
+                                        Houses
                                     </Link>
                                 </li>
 
@@ -174,7 +174,7 @@ export function Layout(this: any, { session, children }: PropsWithChildren<Props
 
             <ThemeProvider defaultTheme="system">
 
-                <div className="flex flex-col min-h-screen " data-theme="dark" >
+                <div className="flex flex-col min-h-screen " data-theme="asdf" >
 
 
                     {/* <HeaderScastiel access_token={''} token_type={''} user={null} {...searchBarProps} /> */}
