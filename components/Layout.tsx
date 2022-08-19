@@ -36,6 +36,9 @@ export function Layout({ session, children }: PropsWithChildren<Props>) {
     <>
       <Head>
         <title>Slum Analysis</title>
+
+
+
       </Head>
 
       <ThemeProvider defaultTheme="system">
