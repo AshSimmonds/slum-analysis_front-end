@@ -94,6 +94,8 @@ export default function HouseForm({ session }: Props) {
         try {
             setUpdating(true)
 
+            throw new Error ('No delete for your safety')
+
             const { data, error } = await db
                 .houses()
                 .delete()
@@ -108,7 +110,7 @@ export default function HouseForm({ session }: Props) {
             setUpdating(false)
 
             // Redirect to the list of houses
-            Router.push('/house')
+            Router.push('/house/' + houseId)
         }
     }
 

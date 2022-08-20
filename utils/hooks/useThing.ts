@@ -85,9 +85,9 @@ export function GetThing(session: AuthSession, thingId: number) {
         })()
     }, [thingId, session])
 
-    console.log('useThing.ts - loading', loading)
-    console.log('useThing.ts - error', error)
-    console.log('useThing.ts - thing', thing)
+    console.log('GetThing - loading', loading)
+    console.log('GetThing - error', error)
+    console.log('GetThing - thing', thing)
 
     return { loading, error, thing }
 
@@ -127,9 +127,9 @@ export function GetThings(session: AuthSession) {
         })()
     }, [session])
 
-    console.log('loading', loading)
-    console.log('error', error)
-    console.log('things', things)
+    console.log('GetThings - loading', loading)
+    console.log('GetThings - error', error)
+    console.log('GetThings - things', things)
 
     return { loading, error, things }
 }

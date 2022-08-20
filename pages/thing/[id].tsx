@@ -93,6 +93,8 @@ export default function ThingForm({ session }: Props) {
         try {
             setUpdating(true)
 
+            throw new Error ('No delete for your safety')
+
             const { data, error } = await db
                 .things()
                 .delete()
@@ -107,7 +109,7 @@ export default function ThingForm({ session }: Props) {
             setUpdating(false)
 
             // Redirect to the list of things
-            Router.push('/thing')
+            Router.push('/thing/' + thingId)
         }
     }
 

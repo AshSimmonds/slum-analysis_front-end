@@ -94,6 +94,8 @@ export default function InspectionForm({ session }: Props) {
         try {
             setUpdating(true)
 
+            throw new Error ('No delete for your safety')
+
             const { data, error } = await db
                 .inspections()
                 .delete()
@@ -108,7 +110,7 @@ export default function InspectionForm({ session }: Props) {
             setUpdating(false)
 
             // Redirect to the list of inspections
-            Router.push('/inspection')
+            Router.push('/inspection/' + inspectionId)
         }
     }
 

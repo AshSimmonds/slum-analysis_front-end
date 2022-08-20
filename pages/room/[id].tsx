@@ -103,10 +103,12 @@ export default function RoomForm({ session }: Props) {
         try {
             setUpdating(true)
 
-            const { data, error } = await db
-                .rooms()
-                .delete()
-                .eq('id', roomId)
+            throw new Error ('No delete for your safety')
+
+            // const { data, error } = await db
+            //     .rooms()
+            //     .delete()
+            //     .eq('id', roomId)
 
             if (error) {
                 throw error
@@ -117,7 +119,7 @@ export default function RoomForm({ session }: Props) {
             setUpdating(false)
 
             // Redirect to the list of rooms
-            Router.push('/room')
+            Router.push('/room/' + roomId)
         }
     }
 
