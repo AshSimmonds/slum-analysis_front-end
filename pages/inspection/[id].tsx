@@ -126,79 +126,91 @@ export default function InspectionForm({ session }: Props) {
 
 
     const inspectionEditForm = inspection ?? null ? (
-        <div key={inspection?.id} className='my-4'>
-            <p>Notes: {inspection?.notes}</p>
-            <p>Inspection date: {inspection?.inspection_date}</p>
-            <h3><Link href={`/house/${inspection?.house_id}`}>{'House ID: ' + inspection?.house_id || 'new'}</Link></h3>
+
+        <div key={inspection?.id} className="my-4 card w-96 bg-base-300 shadow-2xl">
+            <div className="card-body">
+
+                <form className="flex flex-col space-y-4">
+                    <div className="form-group">
+                        <label className="label" htmlFor="house_id">
+                            HouseId
+                        </label>
+
+                        <input
+                            className="field"
+                            id="house_id"
+                            type="number"
+                            value={house_id || 0}
+                            onChange={(e) => setHouseId(Number(e.target.value))}
+
+                        />
+                    </div>
 
 
+                    <div className="form-group">
+                        <div className="form-control">
+                            <label className="input-group">
+                                <span className='bg-neutral text-xs'>Notes</span>
 
-            <form className="flex flex-col space-y-4">
-                <div className="form-group">
-                    <label className="label" htmlFor="house_id">
-                        HouseId
-                    </label>
-                    <input
-                        className="field"
-                        id="house_id"
-                        type="number"
-                        value={house_id || 0}
-                        onChange={(e) => setHouseId(Number(e.target.value))}
+                                <textarea
+                                    className="textarea textarea-bordered w-full h-28"
 
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label" htmlFor="notes">
-                        Notes
-                    </label>
-                    <input
-                        className="field"
-                        disabled={updating}
-                        id="notes"
-                        type="text"
-                        value={notes || ''}
-                        onChange={(e) => setNotes(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label" htmlFor="inspection_date">
-                        Inspection date
-                    </label>
-                    <input
-                        className="field"
-                        disabled={updating}
-                        id="inspection_date"
-                        type="text"
-                        value={inspection_date || ''}
-                        onChange={(e) => setInspectionDate(e.target.value)}
-                    />
-                </div>
+                                    disabled={updating}
+                                    id="notes"
 
-                <div>
+                                    value={notes || ''}
+                                    onChange={(e) => setNotes(e.target.value)}
+                                    placeholder="Enter notes..."
+                                />
+
+
+                                {/* <input
+                                    className="field input input-bordered "
+                                    disabled={updating}
+                                    id="notes"
+                                    type="text"
+                                    value={notes || ''}
+                                    onChange={(e) => setNotes(e.target.value)}
+                                    placeholder="Enter notes..."
+                                /> */}
+
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="label" htmlFor="inspection_date">
+                            Inspection date
+                        </label>
+                        <input
+                            className="field"
+                            disabled={updating}
+                            id="inspection_date"
+                            type="text"
+                            value={inspection_date || ''}
+                            onChange={(e) => setInspectionDate(e.target.value)}
+                        />
+                    </div>
+
                     <button
-                        className="btn"
+                        className="btn btn-primary"
                         onClick={() => updateInspection({ house_id, notes, inspection_date })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Update'}
                     </button>
-                </div>
 
-
-
-
-                <div>
                     <button
-                        className="btn btn-error btn-sm"
+                        className="btn btn-error"
                         onClick={() => deleteInspection()}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Delete'}
                     </button>
-                </div>
 
-            </form>
+                </form>
 
+            </div>
         </div>
     ) : <h2>nope</h2>
 

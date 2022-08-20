@@ -39,15 +39,17 @@ export function RandomPic() {
 export default function InspectionCard(inspection: Inspection) {
     return (
         <div key={inspection.id} className='my-8 card w-96 bg-base-200 shadow-xl' >
-            <figure>
+            <figure className='h-36 bg-neutral' >
                 <RandomPic />
             </figure>
-            <div className="card-body">
+            <div className="card-body pt-0">
 
                 <h2><Link href={`/inspection/${inspection.id}`}>{'Inspection ID: ' + inspection.id || 'new'}</Link></h2>
-                <h3><Link href={`/house/${inspection.house_id}`}>{'House ID: ' + inspection.house_id || 'new'}</Link></h3>
                 <p>Notes: {inspection.notes}</p>
                 <p>Inspection date: {inspection.inspection_date}</p>
+
+                <h3><Link href={`/house/${inspection.house_id}`}>{'House ID: ' + inspection.house_id || 'new'}</Link></h3>
+
                 <div className="card-actions justify-end">
                     <Link href={`/inspection/${inspection.id}`}>
                         <button className="btn btn-primary">View</button>
