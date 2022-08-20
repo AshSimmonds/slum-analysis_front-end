@@ -65,7 +65,8 @@ export function GetInspection(session: AuthSession, inspectionId: number) {
                     .inspections()
                     .select(`
                         *,
-                        house:house_id (*)
+                        house:house_id (*),
+                        room(inspection_id,*)
                     `)
                     .eq('id', inspectionId)
                     .single()
@@ -86,9 +87,9 @@ export function GetInspection(session: AuthSession, inspectionId: number) {
         })()
     }, [inspectionId, session])
 
-    console.log('loadingasdf', loading)
-    console.log('errorasdf', error)
-    console.log('Inspectionasdf', inspection)
+    console.log('GetInspection - loading', loading)
+    console.log('GetInspection - error', error)
+    console.log('GetInspection - inspection', inspection)
 
     return { loading, error, inspection }
 
