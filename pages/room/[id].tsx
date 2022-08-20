@@ -253,7 +253,7 @@ export default function RoomForm({ session }: Props) {
 
                             <select
                                 className="select select-bordered text-lg "
-                                id="house_id"
+                                id="inspection_id"
                                 value={inspection_id || 0}
                                 onChange={(e) => setInspectionId(Number(e.target.value))}
                             >

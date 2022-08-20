@@ -15,21 +15,17 @@ function thingMagick(
     thing: {
         id: number;
         created_at?: string | undefined;
-        name?: string | undefined;
         notes?: string | undefined;
-        description?: string | undefined;
-        inspection_id?: number | undefined;
-        type_id?: number | undefined;
+        room_id?: number | undefined;
+        type_condition_id?: number | undefined;
     }): JSX.Element {
     return <ThingCard
         key={thing.id}
         id={thing.id}
-        name={thing.name}
         notes={thing.notes}
         created_at={thing.created_at}
-        description={thing.description}
-        inspection_id={thing.inspection_id}
-        type_id={thing.type_id}
+        room_id={thing.room_id}
+        type_condition_id={thing.type_condition_id}
     />
 }
 

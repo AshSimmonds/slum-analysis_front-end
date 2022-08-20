@@ -52,8 +52,6 @@ export function GetThing(session: AuthSession, thingId: number) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<any | null>(null)
     const [thing, setThing] = useState<Thing | null>(null)
-    // const [inspection_id, setInspectionId] = useState<number | null>(null)
-    // const [type_id, setTypeId] = useState<number | null>(null)
 
 
     useEffect(() => {
@@ -87,9 +85,9 @@ export function GetThing(session: AuthSession, thingId: number) {
         })()
     }, [thingId, session])
 
-    console.log('loadingasdf', loading)
-    console.log('errorasdf', error)
-    console.log('thingasdf', thing)
+    console.log('useThing.ts - loading', loading)
+    console.log('useThing.ts - error', error)
+    console.log('useThing.ts - thing', thing)
 
     return { loading, error, thing }
 

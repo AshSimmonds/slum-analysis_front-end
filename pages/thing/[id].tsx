@@ -14,11 +14,9 @@ export interface Props {
 
 export default function ThingForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
-    const [name, setName] = useState<string>('')
+    const [type_condition_id, setTypeConditionId] = useState<number>(0)
     const [notes, setNotes] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
-    const [inspection_id, setInspectionId] = useState<number>(0)
-    const [type_id, setTypeId] = useState<number>(0)
+    const [room_id, setRoomId] = useState<number>(0)
 
 
 
@@ -38,36 +36,28 @@ export default function ThingForm({ session }: Props) {
 
     useEffect(() => {
         if (thing) {
-            setName(thing.name!)
             setNotes(thing.notes!)
-            setDescription(thing.description!)
-            setInspectionId(thing.inspection_id!)
-            setTypeId(thing.type_id!)
+            setRoomId(thing.room_id!)
+            setTypeConditionId(thing.type_condition_id!)
         }
     }, [thing])
 
     async function updateThing({
-        name,
+        room_id,
         notes,
-        description,
-        inspection_id,
-        type_id,
+        type_condition_id,
     }: {
-        name: string
+        room_id: number;
         notes: string
-        description: string
-        inspection_id: number
-        type_id: number
+        type_condition_id: number
     }) {
         try {
             setUpdating(true)
 
             const updates = {
-                name,
+                room_id,
                 notes,
-                description,
-                inspection_id,
-                type_id,
+                type_condition_id,
             }
 
             console.log(updates)
@@ -145,7 +135,7 @@ export default function ThingForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateThing({ name, notes, description, inspection_id, type_id })}
+                        onClick={() => updateThing({ notes, room_id, type_condition_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
@@ -153,75 +143,29 @@ export default function ThingForm({ session }: Props) {
 
 
 
-                    <div className="form-control">
-                        <label className="input-group">
-                            <span className='bg-neutral text-neutral-content text-sm'>Name</span>
-
-                            <input
-                                type="text"
-                                className="input input-bordered w-full text-lg"
-
-                                disabled={updating}
-                                id="name"
-
-                                value={name || ''}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Enter name..."
-                            />
-
-                        </label>
-                    </div>
-
-
 
 
 
                     <div className="form-control">
                         <label className="input-group">
-                            <span className='bg-neutral text-neutral-content text-xs'>Type</span>
+                            <span className='bg-neutral text-neutral-content text-xs'>Condition</span>
 
                             <select
                                 className="select select-bordered text-lg "
-                                id="type_id"
-                                value={type_id || 0}
-                                onChange={(e) => setTypeId(Number(e.target.value))}
+                                id="type_condition_id"
+                                value={type_condition_id || 0}
+                                onChange={(e) => setTypeConditionId(Number(e.target.value))}
                             >
                                 <option value={0}>Select type</option>
-                                <option value={1}>ceiling space</option>
-                                <option value={2}>lounge</option>
-                                <option value={3}>passage</option>
-                                <option value={4}>kitchen</option>
-                                <option value={5}>bedthing</option>
-                                <option value={6}>baththing</option>
-                                <option value={7}>toilet</option>
-                                <option value={8}>laundry</option>
-                                <option value={666}>Hell</option>
+                                <option value={1}>good</option>
+                                <option value={2}>ok</option>
+                                <option value={3}>shit</option>
+                                <option value={4}>asdf</option>
+                                <option value={666}>Hellspawn</option>
                             </select>
 
                         </label>
                     </div>
-
-
-
-                    <div className="form-control">
-                        <label className="input-group">
-
-                            <textarea
-                                className="textarea textarea-bordered w-full h-28"
-
-                                disabled={updating}
-                                id="description"
-
-                                value={description || ''}
-                                onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Enter description..."
-                            />
-
-                            <span className='bg-neutral text-neutral-content text-xs'>Description</span>
-
-                        </label>
-                    </div>
-
 
 
 
@@ -249,13 +193,13 @@ export default function ThingForm({ session }: Props) {
 
                     <div className="form-control">
                         <label className="input-group">
-                            <span className='bg-neutral text-neutral-content text-xs'>Inspection</span>
+                            <span className='bg-neutral text-neutral-content text-xs'>Room</span>
 
                             <select
                                 className="select select-bordered text-lg "
-                                id="house_id"
-                                value={inspection_id || 0}
-                                onChange={(e) => setInspectionId(Number(e.target.value))}
+                                id="room_id"
+                                value={room_id || 0}
+                                onChange={(e) => setRoomId(Number(e.target.value))}
                             >
                                 <option value={0}>Select inspection</option>
                                 <option value={2}>Two</option>
