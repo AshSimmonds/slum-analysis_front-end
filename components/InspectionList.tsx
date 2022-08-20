@@ -12,25 +12,32 @@ export interface Props {
 
 
 // // TODO: figure out how the hell this works (been working 18 hours now and can't fathom)
-function inspectionMagick(inspection: { id: number; created_at?: string | undefined; house?: House | undefined; notes?: string | undefined; inspection_date?: string | undefined}, includeHouse?: boolean | false ): JSX.Element {
-    return <InspectionCard key={inspection.id} id={inspection.id} notes={inspection.notes} created_at={inspection.created_at} inspection_date={inspection.inspection_date} house={inspection.house} />
+function inspectionMagick(
+    inspection: {
+        id: number;
+        created_at?: string | undefined;
+        house_id?: number | undefined;
+        notes?: string | undefined;
+        inspection_date?: string | undefined
+    },
+): JSX.Element {
+    return <InspectionCard
+        key={inspection.id}
+        id={inspection.id}
+        notes={inspection.notes}
+        created_at={inspection.created_at}
+        inspection_date={inspection.inspection_date}
+        house_id={inspection.house_id}
+    />
 }
 
 
 
-export default function InspectionList(  { session }: Props) {
+export default function InspectionList({ session }: Props) {
     const { loading, error, inspections } = GetInspections(session)
 
     const listOfInspections = inspections ? inspections.map((inspection: Inspection) => {
         return (
-            // <div key={inspection.id} className='my-4' >
-            //     <h2><Link href={`/inspection/${inspection.id}`}>{'InspectionID: ' + inspection.id}</Link></h2>
-
-            //     <p>House: { inspection.house ? houseMagick(inspection.house) : null} </p>
-
-            //     <p>Notes: {inspection.notes}</p>
-            //     <p>Inspection date: {inspection.inspection_date}</p>
-            // </div>
             inspectionMagick(inspection)
         )
 

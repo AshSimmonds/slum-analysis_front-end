@@ -11,8 +11,26 @@ export interface Props {
 
 
 // TODO: figure out how the hell this works (been working 18 hours now and can't fathom)
-function roomMagick(room: { id: number; created_at?: string | undefined; name?: string | undefined; notes?: string | undefined; description?: string | undefined }): JSX.Element {
-    return <RoomCard key={room.id} id={room.id} name={room.name} notes={room.notes} created_at={room.created_at} description={room.description} />
+function roomMagick(
+    room: {
+        id: number;
+        created_at?: string | undefined;
+        name?: string | undefined;
+        notes?: string | undefined;
+        description?: string | undefined;
+        inspection_id?: number | undefined;
+        type_id?: number | undefined;
+    }): JSX.Element {
+    return <RoomCard
+        key={room.id}
+        id={room.id}
+        name={room.name}
+        notes={room.notes}
+        created_at={room.created_at}
+        description={room.description}
+        inspection_id={room.inspection_id}
+        type_id={room.type_id}
+    />
 }
 
 
@@ -23,12 +41,6 @@ export default function RoomList({ session }: Props) {
 
     const listOfRooms = rooms ? rooms.map((room: Room) => {
         return (
-            // <div key={room.id} className='my-4' >
-            //     <h2>Name: <Link href={`/room/${room.id}`}>{room.name || 'new'}</Link></h2>
-            //     <p>ID: {room.id}</p>
-            //     <p>Notes: {room.notes}</p>
-            //     <p>Description: {room.description}</p>
-            // </div>
             roomMagick(room)
         )
 

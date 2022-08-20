@@ -52,6 +52,8 @@ export function GetRoom(session: AuthSession, roomId: number) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<any | null>(null)
     const [room, setRoom] = useState<Room | null>(null)
+    // const [inspection_id, setInspectionId] = useState<number | null>(null)
+    // const [type_id, setTypeId] = useState<number | null>(null)
 
 
     useEffect(() => {

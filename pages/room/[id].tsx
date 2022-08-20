@@ -17,6 +17,8 @@ export default function RoomForm({ session }: Props) {
     const [name, setName] = useState<string>('')
     const [notes, setNotes] = useState<string>('')
     const [description, setDescription] = useState<string>('')
+    const [inspection_id, setInspectionId] = useState<number>(0)
+    const [type_id, setTypeId] = useState<number>(0)
 
 
 
@@ -39,6 +41,8 @@ export default function RoomForm({ session }: Props) {
             setName(room.name!)
             setNotes(room.notes!)
             setDescription(room.description!)
+            setInspectionId(room.inspection_id!)
+            setTypeId(room.type_id!)
         }
     }, [room])
 
@@ -46,10 +50,14 @@ export default function RoomForm({ session }: Props) {
         name,
         notes,
         description,
+        inspection_id,
+        type_id,
     }: {
         name: string
         notes: string
         description: string
+        inspection_id: number
+        type_id: number
     }) {
         try {
             setUpdating(true)
@@ -58,6 +66,8 @@ export default function RoomForm({ session }: Props) {
                 name,
                 notes,
                 description,
+                inspection_id,
+                type_id,
             }
 
             console.log(updates)
@@ -131,6 +141,8 @@ export default function RoomForm({ session }: Props) {
             <p>ID: {room?.id}</p>
             <p>Notes: {room?.notes}</p>
             <p>Description: {room?.description}</p>
+            <p>Inspection ID: {room?.inspection_id}</p>
+            <p>Type ID: {room?.type_id}</p>
 
 
 
@@ -174,11 +186,37 @@ export default function RoomForm({ session }: Props) {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
+                <div className="form-group">
+                    <label className="label" htmlFor="inspection_id">
+                        InspectionId
+                    </label>
+                    <input
+                        className="field"
+                        id="inspection_id"
+                        type="number"
+                        value={inspection_id || 0}
+                        onChange={(e) => setInspectionId(Number(e.target.value))}
+
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="label" htmlFor="type_id">
+                        TypeId
+                    </label>
+                    <input
+                        className="field"
+                        id="type_id"
+                        type="number"
+                        value={type_id || 0}
+                        onChange={(e) => setTypeId(Number(e.target.value))}
+
+                    />
+                </div>
 
                 <div>
                     <button
                         className="btn"
-                        onClick={() => updateRoom({ name, notes, description })}
+                        onClick={() => updateRoom({ name, notes, description, inspection_id, type_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Update'}

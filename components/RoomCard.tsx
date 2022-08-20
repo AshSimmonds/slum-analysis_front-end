@@ -1,10 +1,5 @@
-// import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { Room } from '../types/ash'
-
-// export interface Props {
-//     session: AuthSession
-// }
 
 // export default function RoomCard({ session }: Props, room: Room) {
 export default function RoomCard(room: Room) {
@@ -14,6 +9,8 @@ export default function RoomCard(room: Room) {
             <h3>Name: {room.name || 'new'}</h3>
             <p>Notes: {room.notes}</p>
             <p>Description: {room.description}</p>
+            <p>Inspection ID: {room.inspection_id}</p>
+            <p>Type ID: {room.type_id}</p>
         </div>
     )
 }

@@ -118,7 +118,7 @@ export interface paths {
           id?: parameters["rowFilter.room.id"];
           created_at?: parameters["rowFilter.room.created_at"];
           inspection_id?: parameters["rowFilter.room.inspection_id"];
-          type?: parameters["rowFilter.room.type"];
+          type_id?: parameters["rowFilter.room.type_id"];
           name?: parameters["rowFilter.room.name"];
           description?: parameters["rowFilter.room.description"];
           notes?: parameters["rowFilter.room.notes"];
@@ -175,7 +175,7 @@ export interface paths {
           id?: parameters["rowFilter.room.id"];
           created_at?: parameters["rowFilter.room.created_at"];
           inspection_id?: parameters["rowFilter.room.inspection_id"];
-          type?: parameters["rowFilter.room.type"];
+          type_id?: parameters["rowFilter.room.type_id"];
           name?: parameters["rowFilter.room.name"];
           description?: parameters["rowFilter.room.description"];
           notes?: parameters["rowFilter.room.notes"];
@@ -196,7 +196,7 @@ export interface paths {
           id?: parameters["rowFilter.room.id"];
           created_at?: parameters["rowFilter.room.created_at"];
           inspection_id?: parameters["rowFilter.room.inspection_id"];
-          type?: parameters["rowFilter.room.type"];
+          type_id?: parameters["rowFilter.room.type_id"];
           name?: parameters["rowFilter.room.name"];
           description?: parameters["rowFilter.room.description"];
           notes?: parameters["rowFilter.room.notes"];
@@ -1239,7 +1239,7 @@ export interface definitions {
      * @description Note:
      * This is a Foreign Key to `type_room.id`.<fk table='type_room' column='id'/>
      */
-    type?: number;
+    type_id?: number;
     /** Format: character varying */
     name?: string;
     /** Format: character varying */
@@ -1513,7 +1513,7 @@ export interface parameters {
   /** Format: bigint */
   "rowFilter.room.inspection_id": string;
   /** Format: bigint */
-  "rowFilter.room.type": string;
+  "rowFilter.room.type_id": string;
   /** Format: character varying */
   "rowFilter.room.name": string;
   /** Format: character varying */
