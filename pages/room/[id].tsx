@@ -262,7 +262,7 @@ export default function RoomForm({ session }: Props) {
                                 <option value={0}>Select inspection</option>
                                 <option value={2}>Two</option>
                                 <option value={5}>Five</option>
-                                <option value={7}>Seven</option>
+                                <option value={6}>Six</option>
                                 <option value={14}>Fourteen</option>
                                 <option value={24}>Twenty Four</option>
                                 <option value={666}>Satan</option>

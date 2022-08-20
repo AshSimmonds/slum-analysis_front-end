@@ -1282,25 +1282,6 @@ export interface definitions {
          * This is a Foreign Key to `house.id`.<fk table='house' column='id'/>
          */
         house_id?: number;
-        house?: {
-            /**
-             * Format: bigint
-             * @description Note:
-             * This is a Primary Key.<pk/>
-             */
-            id: number;
-            /**
-             * Format: timestamp with time zone
-             * @default now()
-             */
-            created_at?: string | undefined;
-            /** Format: character varying */
-            address?: string | undefined;
-            /** Format: character varying */
-            notes?: string | undefined;
-            /** Format: date */
-            construct_date?: string | undefined;
-        };
         /** Format: bigint */
         inspector_id?: number;
         /**

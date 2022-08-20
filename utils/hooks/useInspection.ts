@@ -65,11 +65,13 @@ export function GetInspection(session: AuthSession, inspectionId: number) {
                     .inspections()
                     .select(`
                         *,
-                        house:house_id (*),
-                        room(inspection_id,*)
+                        house(*),
+                        rooms:room(*)
                     `)
                     .eq('id', inspectionId)
                     .single()
+
+                    // *,house(*),rooms:room(*)
 
                 if (error && status !== 406) {
                     throw error

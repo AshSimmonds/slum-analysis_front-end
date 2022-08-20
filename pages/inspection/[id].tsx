@@ -4,10 +4,11 @@ import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
 import Router from 'next/router'
 import { GetInspection } from '../../utils/hooks/useInspection'
-import { Inspection } from '../../types/ash'
+import { Inspection, Room } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { HouseThumbCard } from '../../components/HouseCard'
+import RoomCardToRename from '../../components/RoomCard'
 
 export interface Props {
     session: AuthSession
@@ -94,7 +95,7 @@ export default function InspectionForm({ session }: Props) {
         try {
             setUpdating(true)
 
-            throw new Error ('No delete for your safety')
+            throw new Error('No delete for your safety')
 
             const { data, error } = await db
                 .inspections()
@@ -207,15 +208,17 @@ export default function InspectionForm({ session }: Props) {
 
 
 
-<div>
-    <h3>Rooms</h3>
+                    <div>
+                        <h3>Rooms</h3>
+
+                        {inspection?.rooms ? inspection.rooms.map(room => (
+                            RoomCardToRename(room)
+                        )) : null}
 
 
+                        Count: {inspection?.rooms?.length || 0}
 
-
-
-    asdf
-</div>
+                    </div>
 
 
 
