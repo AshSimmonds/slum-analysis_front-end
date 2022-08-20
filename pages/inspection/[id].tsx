@@ -7,6 +7,7 @@ import { GetInspection } from '../../utils/hooks/useInspection'
 import { Inspection } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
+import { HouseThumbCard } from '../../components/HouseCard'
 
 export interface Props {
     session: AuthSession
@@ -132,24 +133,9 @@ export default function InspectionForm({ session }: Props) {
 
                 <form className="flex flex-col space-y-4">
 
-
-                    {/* <div className="form-group">
-                        <label className="label" htmlFor="inspection_date">
-                            Inspection date
-                        </label>
-                        <input
-                            className="field"
-                            disabled={updating}
-                            id="inspection_date"
-                            type="text"
-                            value={inspection_date || ''}
-                            onChange={(e) => setInspectionDate(e.target.value)}
-                        />
-                    </div> */}
-
                     <div className="form-control">
                         <label className="input-group">
-                            <span className='bg-neutral text-xs'>Date</span>
+                            <span className='bg-neutral text-neutral-content text-xs'>Date</span>
 
                             <input
                                 type="text"
@@ -166,11 +152,9 @@ export default function InspectionForm({ session }: Props) {
                         </label>
                     </div>
 
-
-                    {/* <div className="form-group"> */}
                     <div className="form-control">
                         <label className="input-group">
-                            <span className='bg-neutral text-xs'>Notes</span>
+                            <span className='bg-neutral text-neutral-content text-xs'>Notes</span>
 
                             <textarea
                                 className="textarea textarea-bordered w-full h-28"
@@ -185,22 +169,33 @@ export default function InspectionForm({ session }: Props) {
 
                         </label>
                     </div>
-                    {/* </div> */}
 
-                    <div className="form-group">
-                        <label className="label" htmlFor="house_id">
-                            HouseId
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>House</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="house_id"
+                                value={house_id || 0}
+                                onChange={(e) => setHouseId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select house</option>
+                                <option value={7}>Seven</option>
+                                <option value={14}>Fourteen</option>
+                                <option value={24}>Twenty Four</option>
+                                <option value={666}>Satan</option>
+                            </select>
+
                         </label>
-
-                        <input
-                            className="field"
-                            id="house_id"
-                            type="number"
-                            value={house_id || 0}
-                            onChange={(e) => setHouseId(Number(e.target.value))}
-
-                        />
                     </div>
+
+
+
+                    { HouseThumbCard ( inspection?.house) } 
+
+
 
                     <button
                         className="btn btn-primary"

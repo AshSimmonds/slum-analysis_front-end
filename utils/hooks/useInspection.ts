@@ -63,7 +63,10 @@ export function GetInspection(session: AuthSession, inspectionId: number) {
 
                 const { data, error, status } = await db
                     .inspections()
-                    .select('*')
+                    .select(`
+                        *,
+                        house:house_id (*)
+                    `)
                     .eq('id', inspectionId)
                     .single()
 

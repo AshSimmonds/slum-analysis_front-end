@@ -7,6 +7,7 @@ import { GetHouse } from '../../utils/hooks/useHouse'
 import { House } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
+import { HouseThumbCard } from '../../components/HouseCard'
 
 export interface Props {
     session: AuthSession
@@ -31,7 +32,7 @@ export default function HouseForm({ session }: Props) {
 
     const houseId = Number(query.id)
 
-    const { loading, error, house } = GetHouse(session, houseId)
+    const { loading, error, house } = GetHouse(houseId)
 
 
     useEffect(() => {
@@ -171,6 +172,10 @@ export default function HouseForm({ session }: Props) {
                                 onChange={(e) => setConstructDate(e.target.value)}
                             />
                         </div>
+
+
+
+
 
                         <button
                             className="btn btn-primary"

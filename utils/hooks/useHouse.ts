@@ -48,7 +48,7 @@ export function NewHouse() {
 
 // TODO: figure out how to deal with single vs multiple houses
 
-export function GetHouse(session: AuthSession, houseId: number) {
+export function GetHouse(houseId: number) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<any | null>(null)
     const [house, setHouse] = useState<House | null>(null)
@@ -60,6 +60,7 @@ export function GetHouse(session: AuthSession, houseId: number) {
                 setLoading(true)
 
                 if (!houseId) {
+                    console.log('useHouse.ts - no houseId')
                     throw new Error('No houseId provided')
                 }
 
@@ -83,11 +84,11 @@ export function GetHouse(session: AuthSession, houseId: number) {
                 setLoading(false)
             }
         })()
-    }, [houseId, session])
+    }, [houseId])
 
-    console.log('loadingasdf', loading)
-    console.log('errorasdf', error)
-    console.log('houseasdf', house)
+    // console.log('loadingasdf', loading)
+    // console.log('errorasdf', error)
+    // console.log('houseasdf', house)
 
     return { loading, error, house }
 
