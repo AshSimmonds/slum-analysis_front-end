@@ -2,7 +2,7 @@ import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { House } from '../types/ash'
 import { GetHouses } from '../utils/hooks/useHouse'
-import HouseCard from '../components/HouseCard'
+import { HouseCard } from '../components/HouseCard'
 
 
 export interface Props {

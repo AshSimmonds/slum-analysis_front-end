@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Inspection } from '../types/ash'
+import { House, Inspection } from '../types/ash'
+import { HouseThumbCard } from './HouseCard';
 
 
 
@@ -10,6 +11,7 @@ export function inspectionMagick(
         house_id?: number | undefined;
         notes?: string | undefined;
         inspection_date?: string | undefined
+        house?: House | undefined
     },
 ): JSX.Element {
     return <InspectionCard
@@ -19,6 +21,9 @@ export function inspectionMagick(
         created_at={inspection.created_at}
         inspection_date={inspection.inspection_date}
         house_id={inspection.house_id}
+        house={
+            inspection.house
+        }
     />
 }
 
@@ -38,7 +43,7 @@ export function RandomPic() {
 
 export default function InspectionCard(inspection: Inspection) {
     return (
-        <div key={inspection.id} className='my-8 card w-96 bg-base-200 shadow-xl' >
+        <div key={inspection.id} className='my-12 card w-96 bg-base-200 shadow-xl' >
             <figure className='h-36 bg-neutral' >
                 <RandomPic />
             </figure>
@@ -47,6 +52,8 @@ export default function InspectionCard(inspection: Inspection) {
                 <h2><Link href={`/inspection/${inspection.id}`}>{'Inspection ID: ' + inspection.id || 'new'}</Link></h2>
                 <p>Notes: {inspection.notes}</p>
                 <p>Inspection date: {inspection.inspection_date}</p>
+
+                {HouseThumbCard(inspection?.house)}
 
                 <h3><Link href={`/house/${inspection.house_id}`}>{'House ID: ' + inspection.house_id || 'new'}</Link></h3>
 

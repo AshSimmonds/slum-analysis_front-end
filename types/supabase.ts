@@ -1265,6 +1265,25 @@
       description?: string;
     };
     inspection: {
+      house: {
+          /**
+           * Format: bigint
+           * @description Note:
+           * This is a Primary Key.<pk/>
+           */
+          id: number;
+          /**
+           * Format: timestamp with time zone
+           * @default now()
+           */
+          created_at?: string | undefined;
+          /** Format: character varying */
+          address?: string | undefined;
+          /** Format: character varying */
+          notes?: string | undefined;
+          /** Format: date */
+          construct_date?: string | undefined;
+      };
       /**
        * Format: bigint
        * @description Note:

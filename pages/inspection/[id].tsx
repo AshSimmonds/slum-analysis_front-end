@@ -193,7 +193,7 @@ export default function InspectionForm({ session }: Props) {
 
 
 
-                    { HouseThumbCard ( inspection?.house) } 
+                    { HouseThumbCard ( inspection!.house) } 
 
 
 
