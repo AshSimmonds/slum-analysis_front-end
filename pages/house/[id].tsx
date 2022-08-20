@@ -94,7 +94,7 @@ export default function HouseForm({ session }: Props) {
         try {
             setUpdating(true)
 
-            throw new Error ('No delete for your safety')
+            throw new Error('No delete for your safety')
 
             const { data, error } = await db
                 .houses()
@@ -129,78 +129,97 @@ export default function HouseForm({ session }: Props) {
 
 
     const houseEditForm = house ?? null ? (
-        <div key={house?.id} className='my-4'>
+        <div key={house?.id} className='my-4 card w-96 bg-base-300 shadow-2xl'>
+            <div className="card-body">
 
-            <div className="card w-96 bg-base-300 shadow-2xl">
-                <div className="card-body">
+                <form className="flex flex-col space-y-4">
 
-                    <form className="flex flex-col space-y-4">
-                        <div className="form-group">
-                            <label className="label" htmlFor="address">
+
+                    <div className="form-control">
+                        <label className="input-group" >
+                            <span className='bg-neutral text-neutral-content text-xs'>
                                 Address
-                            </label>
+                            </span>
+
                             <input
-                                className="field"
+                                className="input input-bordered w-full"
                                 id="address"
                                 type="text"
                                 value={address || ''}
                                 onChange={(e) => setAddress(e.target.value)}
-
+                                disabled={updating}
+                                placeholder="Enter address..."
                             />
-                        </div>
-                        <div className="form-group">
-                            <label className="label" htmlFor="notes">
-                                Notes
-                            </label>
-                            <input
-                                className="field"
+
+                        </label>
+                    </div>
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Notes</span>
+
+                            <textarea
+                                className="textarea textarea-bordered w-full h-28"
+
                                 disabled={updating}
                                 id="notes"
-                                type="text"
+
                                 value={notes || ''}
                                 onChange={(e) => setNotes(e.target.value)}
+                                placeholder="Enter notes..."
                             />
-                        </div>
-                        <div className="form-group">
-                            <label className="label" htmlFor="construct_date">
-                                Construction date
-                            </label>
+
+                        </label>
+                    </div>
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Year built</span>
+
                             <input
-                                className="field"
+                                type="text"
+                                className="input input-bordered w-full"
+
                                 disabled={updating}
                                 id="construct_date"
-                                type="text"
+
                                 value={construct_date || ''}
                                 onChange={(e) => setConstructDate(e.target.value)}
+                                placeholder="Enter date..."
                             />
-                        </div>
+
+                        </label>
+                    </div>
 
 
 
 
 
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => updateHouse({ address, notes, construct_date })}
-                            disabled={updating}
-                        >
-                            {updating ? 'Updating…' : 'Update'}
-                        </button>
-                        <button
-                            className="btn btn-error"
-                            onClick={() => deleteHouse()}
-                            disabled={updating}
-                        >
-                            {updating ? 'Updating…' : 'Delete'}
-                        </button>
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => updateHouse({ address, notes, construct_date })}
+                        disabled={updating}
+                    >
+                        {updating ? 'Updating…' : 'Update'}
+                    </button>
+                    <button
+                        className="btn btn-error"
+                        onClick={() => deleteHouse()}
+                        disabled={updating}
+                    >
+                        {updating ? 'Updating…' : 'Delete'}
+                    </button>
 
-                    </form>
+                </form>
 
-                </div>
             </div>
-
-
         </div>
+
+
     ) : <h2>nope</h2>
 
 
