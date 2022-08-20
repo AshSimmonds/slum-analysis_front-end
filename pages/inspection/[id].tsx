@@ -133,6 +133,15 @@ export default function InspectionForm({ session }: Props) {
 
                 <form className="flex flex-col space-y-4">
 
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => updateInspection({ house_id, notes, inspection_date })}
+                        disabled={updating}
+                    >
+                        {updating ? 'Updating…' : 'Save'}
+                    </button>
+
+
                     <div className="form-control">
                         <label className="input-group">
                             <span className='bg-neutral text-neutral-content text-xs'>Date</span>
@@ -192,21 +201,24 @@ export default function InspectionForm({ session }: Props) {
                     </div>
 
 
+                    {HouseThumbCard(inspection!.house!)}
 
-                    { HouseThumbCard ( inspection!.house!) } 
+
+
+<div>
+    <h3>Rooms</h3>
+
+
+
+
+
+    asdf
+</div>
 
 
 
                     <button
-                        className="btn btn-primary"
-                        onClick={() => updateInspection({ house_id, notes, inspection_date })}
-                        disabled={updating}
-                    >
-                        {updating ? 'Updating…' : 'Update'}
-                    </button>
-
-                    <button
-                        className="btn btn-error"
+                        className="btn btn-error mt-20"
                         onClick={() => deleteInspection()}
                         disabled={updating}
                     >

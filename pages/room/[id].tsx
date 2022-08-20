@@ -136,97 +136,152 @@ export default function RoomForm({ session }: Props) {
 
 
     const roomEditForm = room ?? null ? (
-        <div key={room?.id} className='my-4'>
-            <h2>Name: {room?.name}</h2>
-            <p>ID: {room?.id}</p>
-            <p>Notes: {room?.notes}</p>
-            <p>Description: {room?.description}</p>
-            <p>Inspection ID: {room?.inspection_id}</p>
-            <p>Type ID: {room?.type_id}</p>
+        <div key={room?.id} className='my-4 card w-96 bg-base-300 shadow-2xl'>
+
+            <div className="card-body">
 
 
+                <form className="flex flex-col space-y-4">
 
-            <form className="flex flex-col space-y-4">
-                <div className="form-group">
-                    <label className="label" htmlFor="name">
-                        Name
-                    </label>
-                    <input
-                        className="field"
-                        id="name"
-                        type="text"
-                        value={name || ''}
-                        onChange={(e) => setName(e.target.value)}
-
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label" htmlFor="notes">
-                        Notes
-                    </label>
-                    <input
-                        className="field"
-                        disabled={updating}
-                        id="notes"
-                        type="text"
-                        value={notes || ''}
-                        onChange={(e) => setNotes(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label" htmlFor="description">
-                        Description
-                    </label>
-                    <input
-                        className="field"
-                        disabled={updating}
-                        id="description"
-                        type="text"
-                        value={description || ''}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label" htmlFor="inspection_id">
-                        InspectionId
-                    </label>
-                    <input
-                        className="field"
-                        id="inspection_id"
-                        type="number"
-                        value={inspection_id || 0}
-                        onChange={(e) => setInspectionId(Number(e.target.value))}
-
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="label" htmlFor="type_id">
-                        TypeId
-                    </label>
-                    <input
-                        className="field"
-                        id="type_id"
-                        type="number"
-                        value={type_id || 0}
-                        onChange={(e) => setTypeId(Number(e.target.value))}
-
-                    />
-                </div>
-
-                <div>
                     <button
-                        className="btn"
+                        className="btn btn-primary"
                         onClick={() => updateRoom({ name, notes, description, inspection_id, type_id })}
                         disabled={updating}
                     >
-                        {updating ? 'Updating…' : 'Update'}
+                        {updating ? 'Updating…' : 'Save'}
                     </button>
-                </div>
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-sm'>Name</span>
+
+                            <input
+                                type="text"
+                                className="input input-bordered w-full text-lg"
+
+                                disabled={updating}
+                                id="name"
+
+                                value={name || ''}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Enter name..."
+                            />
+
+                        </label>
+                    </div>
 
 
 
 
-                <div>
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Type</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="type_id"
+                                value={type_id || 0}
+                                onChange={(e) => setTypeId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select type</option>
+                                <option value={1}>ceiling space</option>
+                                <option value={2}>lounge</option>
+                                <option value={3}>passage</option>
+                                <option value={4}>kitchen</option>
+                                <option value={5}>bedroom</option>
+                                <option value={6}>bathroom</option>
+                                <option value={7}>toilet</option>
+                                <option value={8}>laundry</option>
+                                <option value={666}>Hell</option>
+                            </select>
+
+                        </label>
+                    </div>
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+
+                            <textarea
+                                className="textarea textarea-bordered w-full h-28"
+
+                                disabled={updating}
+                                id="description"
+
+                                value={description || ''}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Enter description..."
+                            />
+
+                            <span className='bg-neutral text-neutral-content text-xs'>Description</span>
+
+                        </label>
+                    </div>
+
+
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Notes</span>
+
+                            <textarea
+                                className="textarea textarea-bordered w-full h-28"
+
+                                disabled={updating}
+                                id="notes"
+
+                                value={notes || ''}
+                                onChange={(e) => setNotes(e.target.value)}
+                                placeholder="Enter notes..."
+                            />
+
+                        </label>
+                    </div>
+
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Inspection</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="house_id"
+                                value={inspection_id || 0}
+                                onChange={(e) => setInspectionId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select inspection</option>
+                                <option value={2}>Two</option>
+                                <option value={5}>Five</option>
+                                <option value={7}>Seven</option>
+                                <option value={14}>Fourteen</option>
+                                <option value={24}>Twenty Four</option>
+                                <option value={666}>Satan</option>
+                            </select>
+
+                        </label>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <button
                         className="btn btn-error btn-sm"
                         onClick={() => deleteRoom()}
@@ -234,9 +289,11 @@ export default function RoomForm({ session }: Props) {
                     >
                         {updating ? 'Updating…' : 'Delete'}
                     </button>
-                </div>
 
-            </form>
+                </form>
+
+
+            </div>
 
         </div>
     ) : <h2>nope</h2>
