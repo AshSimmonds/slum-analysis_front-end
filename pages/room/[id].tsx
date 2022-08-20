@@ -144,7 +144,7 @@ export default function RoomForm({ session }: Props) {
 
 
     const roomEditForm = room ?? null ? (
-        <div key={room?.id} className='my-4 card w-96 bg-base-300 shadow-2xl'>
+        <div key={room?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
             <div className="card-body">
 

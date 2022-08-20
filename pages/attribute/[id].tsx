@@ -128,7 +128,7 @@ export default function AttributeForm({ session }: Props) {
 
 
     const attributeEditForm = attribute ?? null ? (
-        <div key={attribute?.id} className='my-4 card w-96 bg-base-300 shadow-2xl'>
+        <div key={attribute?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
             <div className="card-body">
 

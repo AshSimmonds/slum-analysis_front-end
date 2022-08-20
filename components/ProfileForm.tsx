@@ -70,7 +70,7 @@ export function ProfileForm({ session }: Props) {
     return (
 
 
-        <div className="card w-96 bg-base-300 shadow-2xl">
+        <div className="card max-w-sm bg-base-300 shadow-2xl">
             <figure>
                 {/* <img src="https://placeimg.com/400/225/arch" alt="Shoes" /> */}
                 <EditAvatar url={avatar_url} onUpload={(url) => setAvatarUrl(url)} />

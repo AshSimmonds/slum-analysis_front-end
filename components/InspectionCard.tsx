@@ -47,7 +47,7 @@ export default function InspectionCard(inspection: Inspection) {
     console.log('InspectionCard - inspection:', inspection)
 
     return (
-        <div key={inspection.id} className='my-12 card w-96 bg-base-200 shadow-xl' >
+        <div key={inspection.id} className='my-12 card bg-base-200 shadow-xl' >
             <figure className='h-36 bg-neutral' >
                 <RandomPic />
             </figure>
