@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { House, Inspection } from '../types/ash'
+import { House, Inspection, Room } from '../types/ash'
 import { HouseThumbCard } from './HouseCard';
 
 
@@ -11,17 +11,19 @@ export function inspectionMagick(
         house_id?: number | undefined;
         notes?: string | undefined;
         inspection_date?: string | undefined
-        house?: House | undefined
+        inspected_house?: House | undefined
+        rooms?: Array<Room> | undefined
     },
 ): JSX.Element {
     return <InspectionCard
         key={inspection.id}
         id={inspection.id}
-        notes={inspection.notes}
         created_at={inspection.created_at}
-        inspection_date={inspection.inspection_date}
-        house={inspection.house}
         house_id={inspection.house_id}
+        notes={inspection.notes}
+        inspection_date={inspection.inspection_date}
+        inspected_house={inspection.inspected_house}
+        rooms={inspection.rooms}
     />
 }
 
@@ -52,7 +54,10 @@ export default function InspectionCard(inspection: Inspection) {
                 <p>Notes: {inspection.notes}</p>
                 <p>Inspection date: {inspection.inspection_date}</p>
 
-                {HouseThumbCard(inspection!.house!)}
+                {
+                    inspection.inspected_house ? HouseThumbCard(inspection.inspected_house) :
+                        <div>me casa nein casa</div>
+                }
 
                 <h3><Link href={`/house/${inspection.house_id}`}>{'House ID: ' + inspection.house_id || 'new'}</Link></h3>
 

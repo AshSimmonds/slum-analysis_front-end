@@ -14,7 +14,7 @@ export interface Props {
 
 export default function ThingForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
-    const [type_condition_id, setTypeConditionId] = useState<number>(0)
+    const [condition_id, setConditionId] = useState<number>(0)
     const [notes, setNotes] = useState<string>('')
     const [room_id, setRoomId] = useState<number>(0)
 
@@ -38,18 +38,18 @@ export default function ThingForm({ session }: Props) {
         if (thing) {
             setNotes(thing.notes!)
             setRoomId(thing.room_id!)
-            setTypeConditionId(thing.type_condition_id!)
+            setConditionId(thing.condition_id!)
         }
     }, [thing])
 
     async function updateThing({
         room_id,
         notes,
-        type_condition_id,
+        condition_id,
     }: {
         room_id: number;
         notes: string
-        type_condition_id: number
+        condition_id: number
     }) {
         try {
             setUpdating(true)
@@ -57,7 +57,7 @@ export default function ThingForm({ session }: Props) {
             const updates = {
                 room_id,
                 notes,
-                type_condition_id,
+                condition_id,
             }
 
             console.log(updates)
@@ -137,7 +137,7 @@ export default function ThingForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateThing({ notes, room_id, type_condition_id })}
+                        onClick={() => updateThing({ notes, room_id, condition_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
@@ -155,8 +155,8 @@ export default function ThingForm({ session }: Props) {
                             <select
                                 className="select select-bordered text-lg "
                                 id="type_condition_id"
-                                value={type_condition_id || 0}
-                                onChange={(e) => setTypeConditionId(Number(e.target.value))}
+                                value={condition_id || 0}
+                                onChange={(e) => setConditionId(Number(e.target.value))}
                             >
                                 <option value={0}>Select type</option>
                                 <option value={1}>good</option>

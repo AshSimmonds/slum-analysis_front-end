@@ -17,7 +17,7 @@ function thingMagick(
         created_at?: string | undefined;
         notes?: string | undefined;
         room_id?: number | undefined;
-        type_condition_id?: number | undefined;
+        condition_id?: number | undefined;
     }): JSX.Element {
     return <ThingCard
         key={thing.id}
@@ -25,7 +25,7 @@ function thingMagick(
         notes={thing.notes}
         created_at={thing.created_at}
         room_id={thing.room_id}
-        type_condition_id={thing.type_condition_id}
+        condition_id={thing.condition_id}
     />
 }
 

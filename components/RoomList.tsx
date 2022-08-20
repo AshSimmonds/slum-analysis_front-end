@@ -19,7 +19,7 @@ function roomMagick(
         notes?: string | undefined;
         description?: string | undefined;
         inspection_id?: number | undefined;
-        type_id?: number | undefined;
+        room_type_id?: number | undefined;
     }): JSX.Element {
     return <RoomCard
         key={room.id}
@@ -29,7 +29,7 @@ function roomMagick(
         created_at={room.created_at}
         description={room.description}
         inspection_id={room.inspection_id}
-        type_id={room.type_id}
+        room_type_id={room.room_type_id}
     />
 }
 

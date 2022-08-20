@@ -42,7 +42,7 @@ export default function RoomForm({ session }: Props) {
             setNotes(room.notes!)
             setDescription(room.description!)
             setInspectionId(room.inspection_id!)
-            setTypeId(room.type_id!)
+            setTypeId(room.room_type_id!)
         }
     }, [room])
 

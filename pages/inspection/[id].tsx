@@ -204,7 +204,9 @@ export default function InspectionForm({ session }: Props) {
                     </div>
 
 
-                    {HouseThumbCard(inspection!.house!)}
+                    { inspection?.inspected_house ? HouseThumbCard(inspection.inspected_house) :
+                        <div>no homo no cry</div>
+                    }
 
 
 
