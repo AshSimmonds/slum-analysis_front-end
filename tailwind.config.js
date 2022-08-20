@@ -29,6 +29,30 @@ module.exports = {
         themes: [
             "light",
             "dark",
+            {
+                jbpslight: {
+                    "primary": "#164e63",
+                    "secondary": "#1e40af",
+                    "accent": "#5b21b6",
+                    "neutral": "#1D283A",
+                    "base-100": "#e5e7eb",
+                    "info": "#1e40af",
+                    "success": "#15803d",
+                    "warning": "#b45309",
+                    "error": "#b91c1c",
+                },
+                jbpsdark: {
+                    "primary": "#164e63",
+                    "secondary": "#1e40af",
+                    "accent": "#5b21b6",
+                    "neutral": "#1D283A",
+                    "base-100": "#0F1729",
+                    "info": "#1e40af",
+                    "success": "#15803d",
+                    "warning": "#b45309",
+                    "error": "#b91c1c",
+                },
+            }
         ],
     },
 
