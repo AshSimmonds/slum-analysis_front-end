@@ -8,6 +8,6 @@ export const db = {
     houses: () => supabase.from<House>('house'), 
     inspections: () => supabase.from<Inspection>('inspection'),
     rooms: () => supabase.from<Room>('room'),
-    attributes: () => supabase.from<Attribute>('room_attribute')
+    attributes: () => supabase.from<Attribute>('attribute')
 
 }
