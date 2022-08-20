@@ -20,6 +20,7 @@ function roomMagick(
         description?: string | undefined;
         inspection_id?: number | undefined;
         room_type_id?: number | undefined;
+        kind?: string | undefined;
     }): JSX.Element {
     return <RoomCard
         key={room.id}
@@ -30,6 +31,7 @@ function roomMagick(
         description={room.description}
         inspection_id={room.inspection_id}
         room_type_id={room.room_type_id}
+        kind={room.kind}
     />
 }
 
