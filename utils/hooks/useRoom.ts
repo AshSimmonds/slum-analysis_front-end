@@ -36,8 +36,8 @@ export function NewRoom() {
         })()
     }, [])
 
-    // console.log('newRoomasdf', newRoom)
-    // console.log('errorasdf', error)
+    // console.log('NewRoom - newRoom', newRoom)
+    // console.log('NewRoom - error', error)
 
     return { error, newRoom }
 }
@@ -87,9 +87,12 @@ export function GetRoom(session: AuthSession, roomId: number) {
         })()
     }, [roomId, session])
 
-    console.log('loadingasdf', loading)
-    console.log('errorasdf', error)
-    console.log('roomasdf', room)
+    // console.log('GetRoom - loading', loading)
+    if (error) {
+        console.log('GetRoom - error', error)
+    } else {
+        console.log('GetRoom - room', room)
+    }
 
     return { loading, error, room }
 

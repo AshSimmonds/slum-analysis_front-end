@@ -18,7 +18,7 @@ export default function RoomForm({ session }: Props) {
     const [notes, setNotes] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [inspection_id, setInspectionId] = useState<number>(0)
-    const [type_id, setTypeId] = useState<number>(0)
+    const [room_type_id, setRoomTypeId] = useState<number>(0)
 
 
 
@@ -42,7 +42,7 @@ export default function RoomForm({ session }: Props) {
             setNotes(room.notes!)
             setDescription(room.description!)
             setInspectionId(room.inspection_id!)
-            setTypeId(room.room_type_id!)
+            setRoomTypeId(room.room_type_id!)
         }
     }, [room])
 
@@ -51,13 +51,13 @@ export default function RoomForm({ session }: Props) {
         notes,
         description,
         inspection_id,
-        type_id,
+        room_type_id,
     }: {
         name: string
         notes: string
         description: string
         inspection_id: number
-        type_id: number
+        room_type_id: number
     }) {
         try {
             setUpdating(true)
@@ -67,10 +67,10 @@ export default function RoomForm({ session }: Props) {
                 notes,
                 description,
                 inspection_id,
-                type_id,
+                room_type_id,
             }
 
-            console.log(updates)
+            console.log('updateRoom - updates: ', updates)
 
             const { data, error } = await db
                 .rooms()
@@ -80,8 +80,8 @@ export default function RoomForm({ session }: Props) {
                 })
                 .eq('id', roomId)
 
-            console.log('data', data)
-            console.log('error', error)
+            console.log('updateRoom - data: ', data)
+            console.log('updateRoom - error: ', error)
 
             if (error) {
                 throw error
@@ -103,7 +103,7 @@ export default function RoomForm({ session }: Props) {
         try {
             setUpdating(true)
 
-            throw new Error ('No delete for your safety')
+            throw new Error('No delete for your safety')
 
             // const { data, error } = await db
             //     .rooms()
@@ -147,7 +147,7 @@ export default function RoomForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateRoom({ name, notes, description, inspection_id, type_id })}
+                        onClick={() => updateRoom({ name, notes, description, inspection_id, room_type_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
@@ -184,9 +184,9 @@ export default function RoomForm({ session }: Props) {
 
                             <select
                                 className="select select-bordered text-lg "
-                                id="type_id"
-                                value={type_id || 0}
-                                onChange={(e) => setTypeId(Number(e.target.value))}
+                                id="room_type_id"
+                                value={room_type_id || 0}
+                                onChange={(e) => setRoomTypeId(Number(e.target.value))}
                             >
                                 <option value={0}>Select type</option>
                                 <option value={1}>ceiling space</option>
