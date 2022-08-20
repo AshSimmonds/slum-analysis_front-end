@@ -1,7 +1,38 @@
 import Link from 'next/link'
-import { Room } from '../types/ash'
+import { Room, RoomKind, Thing } from '../types/ash'
 
-export default function RoomCardToRename(room: Room) {
+
+
+
+
+export function roomMagick(
+    room: {
+        id: number;
+        created_at?: string | undefined;
+        name?: string | undefined;
+        notes?: string | undefined;
+        description?: string | undefined;
+        inspection_id?: number | undefined;
+        room_type_id?: number | undefined;
+        kind?: RoomKind | undefined;
+        things?: Array<Thing> | undefined;
+    }): JSX.Element {
+    return <RoomCardToRename
+        key={room.id}
+        id={room.id}
+        name={room.name}
+        notes={room.notes}
+        created_at={room.created_at}
+        description={room.description}
+        inspection_id={room.inspection_id}
+        room_type_id={room.room_type_id}
+        kind={room.kind}
+        things={room.things}
+    />
+}
+
+
+export function RoomCardToRename(room: Room) {
 
     console.log('RoomCardToRename - room', room)
 

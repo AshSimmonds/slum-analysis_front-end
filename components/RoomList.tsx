@@ -2,39 +2,12 @@ import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { Room } from '../types/ash'
 import { GetRooms } from '../utils/hooks/useRoom'
-import RoomCard from './RoomCard'
+import { roomMagick } from './RoomCard'
 
 
 export interface Props {
     session: AuthSession
 }
-
-
-// TODO: figure out how the hell this works (been working 18 hours now and can't fathom)
-function roomMagick(
-    room: {
-        id: number;
-        created_at?: string | undefined;
-        name?: string | undefined;
-        notes?: string | undefined;
-        description?: string | undefined;
-        inspection_id?: number | undefined;
-        room_type_id?: number | undefined;
-        kind?: string | undefined;
-    }): JSX.Element {
-    return <RoomCard
-        key={room.id}
-        id={room.id}
-        name={room.name}
-        notes={room.notes}
-        created_at={room.created_at}
-        description={room.description}
-        inspection_id={room.inspection_id}
-        room_type_id={room.room_type_id}
-        kind={room.kind}
-    />
-}
-
 
 
 

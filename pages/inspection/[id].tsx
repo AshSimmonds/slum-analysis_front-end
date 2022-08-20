@@ -8,7 +8,7 @@ import { Inspection, Room } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { HouseThumbCard } from '../../components/HouseCard'
-import RoomCardToRename from '../../components/RoomCard'
+import { RoomCardToRename } from '../../components/RoomCard'
 
 export interface Props {
     session: AuthSession
@@ -204,7 +204,7 @@ export default function InspectionForm({ session }: Props) {
                     </div>
 
 
-                    { inspection?.inspected_house ? HouseThumbCard(inspection.inspected_house) :
+                    { inspection?.house ? HouseThumbCard(inspection.house) :
                         <div>no homo no cry</div>
                     }
 
