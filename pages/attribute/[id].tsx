@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
 import Router from 'next/router'
-import { GetThing } from '../../utils/hooks/useThing'
-import { Thing } from '../../types/ash'
+import { GetAttribute } from '../../utils/hooks/useAttribute'
+import { Attribute } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 
@@ -12,7 +12,7 @@ export interface Props {
     session: AuthSession
 }
 
-export default function ThingForm({ session }: Props) {
+export default function AttributeForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
     const [condition_id, setConditionId] = useState<number>(0)
     const [notes, setNotes] = useState<string>('')
@@ -29,20 +29,20 @@ export default function ThingForm({ session }: Props) {
     //     </>
     // }
 
-    const thingId = Number(query.id)
+    const attributeId = Number(query.id)
 
-    const { loading, error, thing } = GetThing(session, thingId)
+    const { loading, error, attribute } = GetAttribute(session, attributeId)
 
 
     useEffect(() => {
-        if (thing) {
-            setNotes(thing.notes!)
-            setRoomId(thing.room_id!)
-            setConditionId(thing.condition_id!)
+        if (attribute) {
+            setNotes(attribute.notes!)
+            setRoomId(attribute.room_id!)
+            setConditionId(attribute.condition_id!)
         }
-    }, [thing])
+    }, [attribute])
 
-    async function updateThing({
+    async function updateAttribute({
         room_id,
         notes,
         condition_id,
@@ -63,12 +63,12 @@ export default function ThingForm({ session }: Props) {
             console.log(updates)
 
             const { data, error } = await db
-                .things()
+                .attributes()
                 .update
                 (updates, {
 
                 })
-                .eq('id', thingId)
+                .eq('id', attributeId)
 
             console.log('data', data)
             console.log('error', error)
@@ -89,16 +89,16 @@ export default function ThingForm({ session }: Props) {
 
 
 
-    async function deleteThing() {
+    async function deleteAttribute() {
         try {
             setUpdating(true)
 
             throw new Error ('No delete for your safety')
 
             const { data, error } = await db
-                .things()
+                .attributes()
                 .delete()
-                .eq('id', thingId)
+                .eq('id', attributeId)
 
             if (error) {
                 throw error
@@ -108,8 +108,8 @@ export default function ThingForm({ session }: Props) {
         } finally {
             setUpdating(false)
 
-            // Redirect to the list of things
-            Router.push('/thing/' + thingId)
+            // Redirect to the list of attributes
+            Router.push('/attribute/' + attributeId)
         }
     }
 
@@ -123,12 +123,12 @@ export default function ThingForm({ session }: Props) {
     }
 
     if (error) {
-        return <p>Error fetching thing data.</p>
+        return <p>Error fetching attribute data.</p>
     }
 
 
-    const thingEditForm = thing ?? null ? (
-        <div key={thing?.id} className='my-4 card w-96 bg-base-300 shadow-2xl'>
+    const attributeEditForm = attribute ?? null ? (
+        <div key={attribute?.id} className='my-4 card w-96 bg-base-300 shadow-2xl'>
 
             <div className="card-body">
 
@@ -137,7 +137,7 @@ export default function ThingForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateThing({ notes, room_id, condition_id })}
+                        onClick={() => updateAttribute({ notes, room_id, condition_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
@@ -230,7 +230,7 @@ export default function ThingForm({ session }: Props) {
 
                     <button
                         className="btn btn-error btn-sm"
-                        onClick={() => deleteThing()}
+                        onClick={() => deleteAttribute()}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Delete'}
@@ -250,9 +250,9 @@ export default function ThingForm({ session }: Props) {
 
         <Layout session={session}>
 
-            <h1>Thing: #{thingId}</h1>
+            <h1>Attribute: #{attributeId}</h1>
 
-            {thingEditForm}
+            {attributeEditForm}
 
         </Layout>
 

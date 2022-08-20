@@ -1,24 +1,24 @@
-import ThingList from '../../components/ThingList'
+import AttributeList from '../../components/AttributeList'
 import { Layout } from '../../components/Layout'
 import { useSession } from '../../utils/hooks/useSession'
 import Link from 'next/link'
 
 
-export default function ThingPage() {
+export default function AttributePage() {
     const session = useSession()
 
     if (!session) return null
 
     return (
         <Layout session={session}>
-            <Link href="/thing/new">
+            <Link href="/attribute/new">
                 <button
                     className="btn">
                     New
                 </button>
             </Link>
 
-            <ThingList session={session} />
+            <AttributeList session={session} />
         </Layout>
     )
 }

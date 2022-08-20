@@ -1,15 +1,15 @@
 import { AuthSession } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
 import { db } from '../db'
-import { Thing } from '../../types/ash'
+import { Attribute } from '../../types/ash'
 
 
 
 
-export function NewThing() {
+export function NewAttribute() {
     const [inserting, setInserting] = useState(false)
     const [error, setError] = useState<any | null>(null)
-    const [newThing, setThing] = useState<Thing | null>(null)
+    const [newAttribute, setAttribute] = useState<Attribute | null>(null)
 
 
     useEffect(() => {
@@ -17,41 +17,41 @@ export function NewThing() {
             try {
                 setInserting(true)
 
-                const newThingData = await db
-                    .things()
+                const newAttributeData = await db
+                    .attributes()
                     .insert({
-                        // name: 'New Thing',
+                        // name: 'New Attribute',
                     })
 
-                if (newThingData.data) {
-                    console.log('useThing.ts - newThingData.data', newThingData.data)
-                    setThing(newThingData.data[0])
+                if (newAttributeData.data) {
+                    console.log('useAttribute.ts - newAttributeData.data', newAttributeData.data)
+                    setAttribute(newAttributeData.data[0])
                 }
 
-            } catch (newThingError: any) {
-                setError(newThingError)
+            } catch (newAttributeError: any) {
+                setError(newAttributeError)
             } finally {
                 setInserting(false)
             }
         })()
     }, [])
 
-    // console.log('newThingasdf', newThing)
+    // console.log('newAttributeasdf', newAttribute)
     // console.log('errorasdf', error)
 
-    return { error, newThing }
+    return { error, newAttribute }
 }
 
 
 
 
 
-// TODO: figure out how to deal with single vs multiple things
+// TODO: figure out how to deal with single vs multiple attributes
 
-export function GetThing(session: AuthSession, thingId: number) {
+export function GetAttribute(session: AuthSession, attributeId: number) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<any | null>(null)
-    const [thing, setThing] = useState<Thing | null>(null)
+    const [attribute, setAttribute] = useState<Attribute | null>(null)
 
 
     useEffect(() => {
@@ -59,14 +59,14 @@ export function GetThing(session: AuthSession, thingId: number) {
             try {
                 setLoading(true)
 
-                if (!thingId) {
-                    throw new Error('No thingId provided')
+                if (!attributeId) {
+                    throw new Error('No attributeId provided')
                 }
 
                 const { data, error, status } = await db
-                    .things()
+                    .attributes()
                     .select('*')
-                    .eq('id', thingId)
+                    .eq('id', attributeId)
                     .single()
 
                 if (error && status !== 406) {
@@ -74,7 +74,7 @@ export function GetThing(session: AuthSession, thingId: number) {
                 }
 
                 if (data) {
-                    setThing(data)
+                    setAttribute(data)
                 }
             } catch (error: any) {
                 setError(error)
@@ -83,23 +83,23 @@ export function GetThing(session: AuthSession, thingId: number) {
                 setLoading(false)
             }
         })()
-    }, [thingId, session])
+    }, [attributeId, session])
 
-    console.log('GetThing - loading', loading)
-    console.log('GetThing - error', error)
-    console.log('GetThing - thing', thing)
+    console.log('GetAttribute - loading', loading)
+    console.log('GetAttribute - error', error)
+    console.log('GetAttribute - attribute', attribute)
 
-    return { loading, error, thing }
+    return { loading, error, attribute }
 
 }
 
 
 
 
-export function GetThings(session: AuthSession) {
+export function GetAttributes(session: AuthSession) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<any | null>(null)
-    const [things, setThings] = useState<Thing[] | null>(null)
+    const [attributes, setAttributes] = useState<Attribute[] | null>(null)
 
     useEffect(() => {
         ; (async function () {
@@ -107,7 +107,7 @@ export function GetThings(session: AuthSession) {
                 setLoading(true)
 
                 const { data, error, status } = await db
-                    .things()
+                    .attributes()
                     .select('*')
                 // .eq('id', user.id)
                 // .single()
@@ -117,7 +117,7 @@ export function GetThings(session: AuthSession) {
                 }
 
                 if (data) {
-                    setThings(data)
+                    setattributes(data)
                 }
             } catch (error: any) {
                 setError(error)
@@ -127,9 +127,9 @@ export function GetThings(session: AuthSession) {
         })()
     }, [session])
 
-    console.log('GetThings - loading', loading)
-    console.log('GetThings - error', error)
-    console.log('GetThings - things', things)
+    console.log('GetAttributes - loading', loading)
+    console.log('GetAttributes - error', error)
+    console.log('GetAttributes - attributes', attributes)
 
-    return { loading, error, things }
+    return { loading, error, attributes }
 }
