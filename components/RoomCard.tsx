@@ -41,7 +41,7 @@ export function RoomCardToRename(room: Room) {
 
     return (
         <div key={room.id} className='my-4' >
-            <h2><Link href={`/room/${room.id}`}>{ roomKind + ' - ' + roomTitle }</Link></h2>
+            <h2><Link href={`/room/${room.id}`}>{ '#' + room.id + ' - ' + roomKind + ' - ' + roomTitle }</Link></h2>
             <p>Description: {room.description}</p>
             <p>Notes: {room.notes}</p>
         </div>
