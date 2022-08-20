@@ -20,12 +20,11 @@ export function inspectionMagick(
         notes={inspection.notes}
         created_at={inspection.created_at}
         inspection_date={inspection.inspection_date}
+        house={inspection.house}
         house_id={inspection.house_id}
-        house={
-            inspection.house
-        }
     />
 }
+
 
 
 export function RandomPic() {
@@ -53,7 +52,7 @@ export default function InspectionCard(inspection: Inspection) {
                 <p>Notes: {inspection.notes}</p>
                 <p>Inspection date: {inspection.inspection_date}</p>
 
-                {HouseThumbCard(inspection?.house)}
+                {HouseThumbCard(inspection!.house!)}
 
                 <h3><Link href={`/house/${inspection.house_id}`}>{'House ID: ' + inspection.house_id || 'new'}</Link></h3>
 
