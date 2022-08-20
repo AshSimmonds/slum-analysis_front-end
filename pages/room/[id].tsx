@@ -7,6 +7,7 @@ import { GetRoom } from '../../utils/hooks/useRoom'
 import { Room } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
+import AttributeList from '../../components/AttributeList'
 
 export interface Props {
     session: AuthSession
@@ -19,6 +20,7 @@ export default function RoomForm({ session }: Props) {
     const [description, setDescription] = useState<string>('')
     const [inspection_id, setInspectionId] = useState<number>(0)
     const [room_type_id, setRoomTypeId] = useState<number>(0)
+    const [house_id, setHouseId] = useState<number>(0)
 
 
 
@@ -43,6 +45,7 @@ export default function RoomForm({ session }: Props) {
             setDescription(room.description!)
             setInspectionId(room.inspection_id!)
             setRoomTypeId(room.room_type_id!)
+            setHouseId(room.house_id!)
         }
     }, [room])
 
@@ -52,12 +55,14 @@ export default function RoomForm({ session }: Props) {
         description,
         inspection_id,
         room_type_id,
+        house_id,
     }: {
         name: string
         notes: string
         description: string
         inspection_id: number
         room_type_id: number
+        house_id: number
     }) {
         try {
             setUpdating(true)
@@ -68,6 +73,7 @@ export default function RoomForm({ session }: Props) {
                 description,
                 inspection_id,
                 room_type_id,
+                house_id,
             }
 
             console.log('updateRoom - updates: ', updates)
@@ -147,7 +153,7 @@ export default function RoomForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateRoom({ name, notes, description, inspection_id, room_type_id })}
+                        onClick={() => updateRoom({ name, notes, description, inspection_id, room_type_id, house_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
@@ -249,6 +255,34 @@ export default function RoomForm({ session }: Props) {
 
 
 
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>House</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="house_id"
+                                value={house_id || 0}
+                                onChange={(e) => setHouseId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select house</option>
+                                <option value={5}>Two</option>
+                                <option value={7}>Five</option>
+                                <option value={8}>Six</option>
+                                <option value={14}>Fourteen</option>
+                                <option value={24}>Twenty Four</option>
+                                <option value={666}>Satan</option>
+                            </select>
+
+                        </label>
+                    </div>
+
+
+
+
+
+
                     <div className="form-control">
                         <label className="input-group">
                             <span className='bg-neutral text-neutral-content text-xs'>Inspection</span>
@@ -273,6 +307,10 @@ export default function RoomForm({ session }: Props) {
 
 
 
+
+<div>
+    <AttributeList session={session} />
+</div>
 
 
 

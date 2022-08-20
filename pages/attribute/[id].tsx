@@ -203,11 +203,11 @@ export default function AttributeForm({ session }: Props) {
                                 value={room_id || 0}
                                 onChange={(e) => setRoomId(Number(e.target.value))}
                             >
-                                <option value={0}>Select inspection</option>
+                                <option value={0}>Select room</option>
                                 <option value={2}>Two</option>
                                 <option value={5}>Five</option>
                                 <option value={7}>Seven</option>
-                                <option value={14}>Fourteen</option>
+                                <option value={9}>Nine</option>
                                 <option value={24}>Twenty Four</option>
                                 <option value={666}>Satan</option>
                             </select>
