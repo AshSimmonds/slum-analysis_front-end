@@ -64,14 +64,14 @@ export function EditAvatar({ url, onUpload }: Props) {
                 <img
                     src={avatarUrl}
                     alt="Avatar"
-                    className="w-16 h-16 rounded-full border object-cover"
+                    className=""
                 />
             ) : (
                 <div className="w-16 h-16 border rounded-full" />
             )}
             <div>
-                <label className="btn-link" htmlFor="single">
-                    {uploading ? 'Uploading…' : 'Change'}
+                <label className="btn btn-default" htmlFor="single">
+                    {uploading ? 'Uploading…' : 'Change avatar'}
                 </label>
                 <input
                     style={{

@@ -68,68 +68,77 @@ export function ProfileForm({ session }: Props) {
     }
 
     return (
-        <form className="flex flex-col space-y-4">
-            <div className="form-group">
-                <label className="label" htmlFor="email">
-                    Email
-                </label>
-                <input
-                    className="field"
-                    id="email"
-                    type="text"
-                    value={session.user!.email}
-                    disabled
-                />
-            </div>
-            <div className="form-group">
-                <label className="label" htmlFor="username">
-                    Name
-                </label>
-                <input
-                    className="field"
-                    disabled={updating}
-                    id="username"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div className="form-group">
-                <label className="label" htmlFor="website">
-                    Website
-                </label>
-                <input
-                    className="field"
-                    disabled={updating}
-                    id="website"
-                    type="website"
-                    value={website}
-                    onChange={(e) => setWebsite(e.target.value)}
-                />
-            </div>
-            <EditAvatar url={avatar_url} onUpload={(url) => setAvatarUrl(url)} />
-
-            <div>
-                <button
-                    className="btn"
-                    onClick={() => updateProfile({ username, website, avatar_url })}
-                    disabled={updating}
-                >
-                    {updating ? 'Updating…' : 'Update'}
-                </button>
-            </div>
 
 
-            <button
-                className="btn-link"
-                onClick={() => {
-                    supabase.auth.signOut()
-                    Router.push('/')
-                }}
-            >
-                Sign out
-            </button>
-        </form>
+        <div className="card w-96 bg-base-300 shadow-2xl">
+            <figure>
+                {/* <img src="https://placeimg.com/400/225/arch" alt="Shoes" /> */}
+                <EditAvatar url={avatar_url} onUpload={(url) => setAvatarUrl(url)} />
+
+            </figure>
+            <div className="card-body">
+
+                <form className="flex flex-col space-y-4">
+                    <div className="form-group">
+                        <label className="label" htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            className="field"
+                            id="email"
+                            type="text"
+                            value={session.user!.email}
+                            disabled
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="label" htmlFor="username">
+                            Name
+                        </label>
+                        <input
+                            className="field"
+                            disabled={updating}
+                            id="username"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="label" htmlFor="website">
+                            Website
+                        </label>
+                        <input
+                            className="field"
+                            disabled={updating}
+                            id="website"
+                            type="website"
+                            value={website}
+                            onChange={(e) => setWebsite(e.target.value)}
+                        />
+                    </div>
+
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => updateProfile({ username, website, avatar_url })}
+                            disabled={updating}
+                        >
+                            {updating ? 'Updating…' : 'Update'}
+                        </button>
+
+
+                    <button
+                        className="btn btn-warning"
+                        onClick={() => {
+                            supabase.auth.signOut()
+                            Router.push('/')
+                        }}
+                    >
+                        Sign out
+                    </button>
+                </form>
+            </div>
+        </div>
 
 
     )
