@@ -117,7 +117,7 @@ export function GetAttributes(session: AuthSession) {
                 }
 
                 if (data) {
-                    setattributes(data)
+                    setAttributes(data)
                 }
             } catch (error: any) {
                 setError(error)

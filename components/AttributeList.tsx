@@ -37,7 +37,7 @@ export default function AttributeList({ session }: Props) {
 
     const listOfAttributes = attributes ? attributes.map((attribute: Attribute) => {
         return (
-            AttributeMagick(attribute)
+            attributeMagick(attribute)
         )
 
     }) : null

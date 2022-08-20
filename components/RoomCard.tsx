@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Room, RoomKind, Thing } from '../types/ash'
+import { Room, RoomKind, Attribute } from '../types/ash'
 
 
 
@@ -15,7 +15,7 @@ export function roomMagick(
         inspection_id?: number | undefined;
         room_type_id?: number | undefined;
         kind?: RoomKind | undefined;
-        things?: Array<Thing> | undefined;
+        attributes?: Array<Attribute> | undefined;
     }): JSX.Element {
     return <RoomCardToRename
         key={room.id}
@@ -27,7 +27,7 @@ export function roomMagick(
         inspection_id={room.inspection_id}
         room_type_id={room.room_type_id}
         kind={room.kind}
-        things={room.things}
+        attributes={room.attributes}
     />
 }
 
