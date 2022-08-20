@@ -17,6 +17,6 @@ export type Room = definitions['room'] & {
 export type House = definitions['house'];
 
 export type Inspection = definitions['inspection'] & {
-    inspected_house?: House,
+    house?: House,
     rooms?: Room[],
 };

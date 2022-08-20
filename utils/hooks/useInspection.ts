@@ -71,7 +71,7 @@ export function GetInspection(session: AuthSession, inspectionId: number) {
                     .eq('id', inspectionId)
                     .single()
 
-                    // *,house(*),rooms:room(*)
+                // *,house(*),rooms:room(*)
 
                 if (error && status !== 406) {
                     throw error
@@ -133,9 +133,12 @@ export function GetInspections(session: AuthSession) {
         })()
     }, [session])
 
-    console.log('loading', loading)
-    console.log('error', error)
-    console.log('inspections', inspections)
+    // console.log('GetInspections - loading', loading)
+    if (error) {
+        console.log('GetInspections - error', error)
+    } else {
+        console.log('GetInspections - inspections', inspections)
+    }
 
     return { loading, error, inspections }
 }

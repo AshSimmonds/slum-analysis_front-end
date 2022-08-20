@@ -11,7 +11,7 @@ export function inspectionMagick(
         house_id?: number | undefined;
         notes?: string | undefined;
         inspection_date?: string | undefined
-        inspected_house?: House | undefined
+        house?: House | undefined
         rooms?: Array<Room> | undefined
     },
 ): JSX.Element {
@@ -22,7 +22,7 @@ export function inspectionMagick(
         house_id={inspection.house_id}
         notes={inspection.notes}
         inspection_date={inspection.inspection_date}
-        inspected_house={inspection.inspected_house}
+        house={inspection.house}
         rooms={inspection.rooms}
     />
 }
@@ -43,6 +43,9 @@ export function RandomPic() {
 
 
 export default function InspectionCard(inspection: Inspection) {
+
+    console.log('InspectionCard - inspection:', inspection)
+
     return (
         <div key={inspection.id} className='my-12 card w-96 bg-base-200 shadow-xl' >
             <figure className='h-36 bg-neutral' >
@@ -55,7 +58,7 @@ export default function InspectionCard(inspection: Inspection) {
                 <p>Inspection date: {inspection.inspection_date}</p>
 
                 {
-                    inspection.inspected_house ? HouseThumbCard(inspection.inspected_house) :
+                    inspection.house ? HouseThumbCard(inspection.house) :
                         <div>me casa nein casa</div>
                 }
 
