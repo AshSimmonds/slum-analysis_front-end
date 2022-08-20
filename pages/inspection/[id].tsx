@@ -127,10 +127,9 @@ export default function InspectionForm({ session }: Props) {
 
     const inspectionEditForm = inspection ?? null ? (
         <div key={inspection?.id} className='my-4'>
-            <h2>HouseId: {inspection?.house_id}</h2>
-            <p>ID: {inspection?.id}</p>
             <p>Notes: {inspection?.notes}</p>
             <p>Inspection date: {inspection?.inspection_date}</p>
+            <h3><Link href={`/house/${inspection?.house_id}`}>{'House ID: ' + inspection?.house_id || 'new'}</Link></h3>
 
 
 
@@ -208,12 +207,6 @@ export default function InspectionForm({ session }: Props) {
     return (
 
         <Layout session={session}>
-            <Link href="/inspection">
-                <button
-                    className="btn">
-                    Inspections
-                </button>
-            </Link>
 
             <h1>Inspection: #{inspectionId}</h1>
 

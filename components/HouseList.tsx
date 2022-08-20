@@ -11,24 +11,32 @@ export interface Props {
 
 
 // TODO: figure out how the hell this works (been working 18 hours now and can't fathom)
-function houseMagick(house: { id: number; created_at?: string | undefined; address?: string | undefined; notes?: string | undefined; construct_date?: string | undefined }): JSX.Element {
-    return <HouseCard key={house.id} id={house.id} address={house.address} notes={house.notes} created_at={house.created_at} construct_date={house.construct_date} />
+function houseMagick(
+    house: {
+        id: number;
+        created_at?: string | undefined;
+        address?: string | undefined;
+        notes?: string | undefined;
+        construct_date?: string | undefined
+    }): JSX.Element {
+    return <HouseCard
+        key={house.id}
+        id={house.id}
+        address={house.address}
+        notes={house.notes}
+        created_at={house.created_at}
+        construct_date={house.construct_date}
+    />
 }
 
 
 
 
-export default function HouseList(  { session }: Props) {
+export default function HouseList({ session }: Props) {
     const { loading, error, houses } = GetHouses(session)
 
     const listOfHouses = houses ? houses.map((house: House) => {
         return (
-            // <div key={house.id} className='my-4' >
-            //     <h2>Address: <Link href={`/house/${house.id}`}>{house.address || 'new'}</Link></h2>
-            //     <p>ID: {house.id}</p>
-            //     <p>Notes: {house.notes}</p>
-            //     <p>Construction date: {house.construct_date}</p>
-            // </div>
             houseMagick(house)
         )
 

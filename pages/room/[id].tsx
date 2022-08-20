@@ -246,12 +246,6 @@ export default function RoomForm({ session }: Props) {
     return (
 
         <Layout session={session}>
-            <Link href="/room">
-                <button
-                    className="btn">
-                    Rooms
-                </button>
-            </Link>
 
             <h1>Room: #{roomId}</h1>
 

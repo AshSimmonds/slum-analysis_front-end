@@ -174,7 +174,7 @@ export function Layout(this: any, { session, children }: PropsWithChildren<Props
 
             <ThemeProvider defaultTheme="system">
 
-                <div className="flex flex-col min-h-screen " data-theme="asdf" >
+                <div className="flex flex-col min-h-screen " data-theme="synthwave" >
 
 
                     {/* <HeaderScastiel access_token={''} token_type={''} user={null} {...searchBarProps} /> */}

@@ -1,12 +1,6 @@
-// import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { House } from '../types/ash'
 
-// export interface Props {
-//     session: AuthSession
-// }
-
-// export default function HouseCard({ session }: Props, house: House) {
 export default function HouseCard(house: House) {
     return (
         <div key={house.id} className='my-4' >
