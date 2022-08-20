@@ -65,8 +65,8 @@ const HeaderHyperUI = (session: AuthSession | null) => {
                                 </li>
 
                                 <li>
-                                    <Link className="" href="/Link03">
-                                        Link03
+                                    <Link className="" href="/room">
+                                        Rooms
                                     </Link>
                                 </li>
 

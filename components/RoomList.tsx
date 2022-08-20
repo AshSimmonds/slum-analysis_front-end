@@ -11,23 +11,23 @@ export interface Props {
 
 
 // TODO: figure out how the hell this works (been working 18 hours now and can't fathom)
-function roomMagick(room: { id: number; created_at?: string | undefined; address?: string | undefined; notes?: string | undefined; construct_date?: string | undefined }): JSX.Element {
-    return <RoomCard key={room.id} id={room.id} address={room.address} notes={room.notes} created_at={room.created_at} construct_date={room.construct_date} />
+function roomMagick(room: { id: number; created_at?: string | undefined; name?: string | undefined; notes?: string | undefined; description?: string | undefined }): JSX.Element {
+    return <RoomCard key={room.id} id={room.id} name={room.name} notes={room.notes} created_at={room.created_at} description={room.description} />
 }
 
 
 
 
-export default function RoomList(  { session }: Props) {
+export default function RoomList({ session }: Props) {
     const { loading, error, rooms } = GetRooms(session)
 
     const listOfRooms = rooms ? rooms.map((room: Room) => {
         return (
             // <div key={room.id} className='my-4' >
-            //     <h2>Address: <Link href={`/room/${room.id}`}>{room.address || 'new'}</Link></h2>
+            //     <h2>Name: <Link href={`/room/${room.id}`}>{room.name || 'new'}</Link></h2>
             //     <p>ID: {room.id}</p>
             //     <p>Notes: {room.notes}</p>
-            //     <p>Construction date: {room.construct_date}</p>
+            //     <p>Description: {room.description}</p>
             // </div>
             roomMagick(room)
         )

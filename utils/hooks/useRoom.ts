@@ -23,10 +23,10 @@ export function NewRoom() {
                         // name: 'New Room',
                     })
 
-                    if (newRoomData.data) {
-                        console.log('useRoom.ts - newRoomData.data', newRoomData.data)
-                        setRoom(newRoomData.data[0])
-                    }
+                if (newRoomData.data) {
+                    console.log('useRoom.ts - newRoomData.data', newRoomData.data)
+                    setRoom(newRoomData.data[0])
+                }
 
             } catch (newRoomError: any) {
                 setError(newRoomError)

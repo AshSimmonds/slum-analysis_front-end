@@ -11,9 +11,9 @@ export default function RoomCard(room: Room) {
     return (
         <div key={room.id} className='my-4' >
             <h2><Link href={`/room/${room.id}`}>{'Room ID: ' + room.id || 'new'}</Link></h2>
-            <h3>Address: {room.address || 'new'}</h3>
+            <h3>Name: {room.name || 'new'}</h3>
             <p>Notes: {room.notes}</p>
-            <p>Construction date: {room.construct_date}</p>
+            <p>Description: {room.description}</p>
         </div>
     )
 }

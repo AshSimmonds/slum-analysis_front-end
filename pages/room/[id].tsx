@@ -14,9 +14,9 @@ export interface Props {
 
 export default function RoomForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
-    const [address, setAddress] = useState<string>('')
+    const [name, setName] = useState<string>('')
     const [notes, setNotes] = useState<string>('')
-    const [construct_date, setConstructDate] = useState<string>('')
+    const [description, setDescription] = useState<string>('')
 
 
 
@@ -36,28 +36,28 @@ export default function RoomForm({ session }: Props) {
 
     useEffect(() => {
         if (room) {
-            setAddress(room.address!)
+            setName(room.name!)
             setNotes(room.notes!)
-            setConstructDate(room.construct_date!)
+            setDescription(room.description!)
         }
     }, [room])
 
     async function updateRoom({
-        address,
+        name,
         notes,
-        construct_date,
+        description,
     }: {
-        address: string
+        name: string
         notes: string
-        construct_date: string
+        description: string
     }) {
         try {
             setUpdating(true)
 
             const updates = {
-                address,
+                name,
                 notes,
-                construct_date,
+                description,
             }
 
             console.log(updates)
@@ -127,24 +127,24 @@ export default function RoomForm({ session }: Props) {
 
     const roomEditForm = room ?? null ? (
         <div key={room?.id} className='my-4'>
-            <h2>Address: {room?.address}</h2>
+            <h2>Name: {room?.name}</h2>
             <p>ID: {room?.id}</p>
             <p>Notes: {room?.notes}</p>
-            <p>Construction date: {room?.construct_date}</p>
+            <p>Description: {room?.description}</p>
 
 
 
             <form className="flex flex-col space-y-4">
                 <div className="form-group">
-                    <label className="label" htmlFor="address">
-                        Address
+                    <label className="label" htmlFor="name">
+                        Name
                     </label>
                     <input
                         className="field"
-                        id="address"
+                        id="name"
                         type="text"
-                        value={address || ''}
-                        onChange={(e) => setAddress(e.target.value)}
+                        value={name || ''}
+                        onChange={(e) => setName(e.target.value)}
 
                     />
                 </div>
@@ -162,26 +162,26 @@ export default function RoomForm({ session }: Props) {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="label" htmlFor="construct_date">
-                        Construction date
+                    <label className="label" htmlFor="description">
+                        Description
                     </label>
                     <input
                         className="field"
                         disabled={updating}
-                        id="construct_date"
+                        id="description"
                         type="text"
-                        value={construct_date || ''}
-                        onChange={(e) => setConstructDate(e.target.value)}
+                        value={description || ''}
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
 
                 <div>
                     <button
                         className="btn"
-                        onClick={() => updateRoom({ address, notes, construct_date })}
+                        onClick={() => updateRoom({ name, notes, description })}
                         disabled={updating}
                     >
-                        {updating ? 'Updating…' : 'Update'}                        
+                        {updating ? 'Updating…' : 'Update'}
                     </button>
                 </div>
 
@@ -191,10 +191,10 @@ export default function RoomForm({ session }: Props) {
                 <div>
                     <button
                         className="btn btn-error btn-sm"
-                        onClick={() => deleteRoom( )}
+                        onClick={() => deleteRoom()}
                         disabled={updating}
                     >
-                        {updating ? 'Updating…' : 'Delete'}                        
+                        {updating ? 'Updating…' : 'Delete'}
                     </button>
                 </div>
 
