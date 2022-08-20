@@ -197,6 +197,7 @@ export default function InspectionForm({ session }: Props) {
                                 <option value={7}>Seven</option>
                                 <option value={14}>Fourteen</option>
                                 <option value={24}>Twenty Four</option>
+                                <option value={27}>Twenty Seven</option>
                                 <option value={666}>Satan</option>
                             </select>
 
