@@ -70,7 +70,7 @@ export function EditHousePhoto({ url, onUpload }: Props) {
                 <div className="w-32 h-32 border rounded-md" />
             )}
             <div>
-                <label className="btn btn-default" htmlFor="single">
+                <label className="btn btn-accent btn-xs" htmlFor="single">
                     {uploading ? 'Uploading…' : 'Change photo'}
                 </label>
                 <input

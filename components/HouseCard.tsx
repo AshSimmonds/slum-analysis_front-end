@@ -1,7 +1,9 @@
 import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
 import { House } from '../types/ash'
 import { GetHouse } from '../utils/hooks/useHouse';
+import { supabase } from '../utils/supabaseClient';
 
 export interface Props {
     session: AuthSession
@@ -21,35 +23,53 @@ export function HouseCard(house: House) {
 
 
 
-
-
-
-// export function inspectionMagick(
-//     inspection: {
-//         id: number;
-//         created_at?: string | undefined;
-//         house_id?: number | undefined;
-//         notes?: string | undefined;
-//         inspection_date?: string | undefined
-//     },
-// ): JSX.Element {
-//     return <InspectionCard
-//         key={inspection.id}
-//         id={inspection.id}
-//         notes={inspection.notes}
-//         created_at={inspection.created_at}
-//         inspection_date={inspection.inspection_date}
-//         house_id={inspection.house_id}
-//     />
-// }
-
-
-
-// export function HouseThumbCard({ session }: Props, houseId: number) {
 export function HouseThumbCard(house: House) {
-    // session = session 
+    // const [housePhotoUrl, setHousePhotoUrl] = useState<string | null>(null)
+    // const [loading, setLoading] = useState(false)
 
-    // const { loading, error, house } = GetHouse(houseId)
+
+    // useEffect(() => {
+    //     if (house.photo_url) downloadImage(house.photo_url)
+    // }, [house.photo_url])
+
+
+    // async function downloadImage(path: string) {
+    //     try {
+    //         setLoading(true)
+
+    //         const { data, error } = await supabase.storage
+    //             .from('photo')
+    //             .download(path)
+    //         if (error) {
+    //             throw error
+    //         }
+    //         const url = URL.createObjectURL(data!)
+    
+    //         setHousePhotoUrl(url)
+    
+    //     } catch (error: any) {
+    //         console.log('Error downloading image: ', error.message)
+    //     } finally {
+    //         setLoading(false)
+    //     }
+    // }
+    
+
+
+    // const housePhoto = 
+    //     housePhotoUrl ?
+    //     <img src={housePhotoUrl} alt={house.address} />
+    //     :
+    //     <img src="https://source.unsplash.com/random/100x180?house" alt="asdf" />
+
+    
+    // if (loading) {
+    //     return(
+    //         <div className="h-full w-full flex justify-center items-center">
+    //             Loading...
+    //         </div>
+    //     )
+    // }
 
     if (!house) {
         return (
@@ -59,21 +79,12 @@ export function HouseThumbCard(house: House) {
         )
     }
 
+
     return (
-
-        // <div key={house.id} className='my-4' >
-        //     <h2><Link href={`/house/${house.id}`}>{'House ID: ' + house.id || 'new'}</Link></h2>
-        //     <h3>Address: {house.address || 'new'}</h3>
-        //     <p>Notes: {house.notes}</p>
-        //     <p>Construction date: {house.construct_date}</p>
-        // </div>
-
-
-
         <div className="card card-side bg-base-100 shadow-xl">
-            <figure className="h-44 w-24 bg-neutral-focus" >
-                <img src="https://source.unsplash.com/random/100x180?house" alt="asdf" />
-            </figure>
+            {/* <figure className="h-44 w-24 bg-neutral-focus" >
+                {housePhoto}
+            </figure> */}
             <div className="card-body">
                 <h2 className="card-title">{house.address || 'unknown'}</h2>
                 <p>{house.notes}</p>
@@ -87,11 +98,5 @@ export function HouseThumbCard(house: House) {
 
     )
 
-    {/* <div key={house.id} className='my-4' >
-            <h2><Link href={`/house/${house.id}`}>{'House ID: ' + house.id || 'new'}</Link></h2>
-            <h3>Address: {house.address || 'new'}</h3>
-            <p>Notes: {house.notes}</p>
-            <p>Construction date: {house.construct_date}</p>
-        </div> */}
 
 }
