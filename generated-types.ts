@@ -213,6 +213,7 @@ export interface paths {
           description?: parameters["rowFilter.room.description"];
           notes?: parameters["rowFilter.room.notes"];
           house_id?: parameters["rowFilter.room.house_id"];
+          photo_url?: parameters["rowFilter.room.photo_url"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -271,6 +272,7 @@ export interface paths {
           description?: parameters["rowFilter.room.description"];
           notes?: parameters["rowFilter.room.notes"];
           house_id?: parameters["rowFilter.room.house_id"];
+          photo_url?: parameters["rowFilter.room.photo_url"];
         };
         header: {
           /** Preference */
@@ -293,6 +295,7 @@ export interface paths {
           description?: parameters["rowFilter.room.description"];
           notes?: parameters["rowFilter.room.notes"];
           house_id?: parameters["rowFilter.room.house_id"];
+          photo_url?: parameters["rowFilter.room.photo_url"];
         };
         body: {
           /** room */
@@ -526,6 +529,7 @@ export interface paths {
           value?: parameters["rowFilter.attribute_trait.value"];
           notes?: parameters["rowFilter.attribute_trait.notes"];
           attribute_id?: parameters["rowFilter.attribute_trait.attribute_id"];
+          photo_url?: parameters["rowFilter.attribute_trait.photo_url"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -582,6 +586,7 @@ export interface paths {
           value?: parameters["rowFilter.attribute_trait.value"];
           notes?: parameters["rowFilter.attribute_trait.notes"];
           attribute_id?: parameters["rowFilter.attribute_trait.attribute_id"];
+          photo_url?: parameters["rowFilter.attribute_trait.photo_url"];
         };
         header: {
           /** Preference */
@@ -602,6 +607,7 @@ export interface paths {
           value?: parameters["rowFilter.attribute_trait.value"];
           notes?: parameters["rowFilter.attribute_trait.notes"];
           attribute_id?: parameters["rowFilter.attribute_trait.attribute_id"];
+          photo_url?: parameters["rowFilter.attribute_trait.photo_url"];
         };
         body: {
           /** attribute_trait */
@@ -1213,6 +1219,7 @@ export interface paths {
           condition_id?: parameters["rowFilter.attribute.condition_id"];
           notes?: parameters["rowFilter.attribute.notes"];
           attribute_type_id?: parameters["rowFilter.attribute.attribute_type_id"];
+          photo_url?: parameters["rowFilter.attribute.photo_url"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -1269,6 +1276,7 @@ export interface paths {
           condition_id?: parameters["rowFilter.attribute.condition_id"];
           notes?: parameters["rowFilter.attribute.notes"];
           attribute_type_id?: parameters["rowFilter.attribute.attribute_type_id"];
+          photo_url?: parameters["rowFilter.attribute.photo_url"];
         };
         header: {
           /** Preference */
@@ -1289,6 +1297,7 @@ export interface paths {
           condition_id?: parameters["rowFilter.attribute.condition_id"];
           notes?: parameters["rowFilter.attribute.notes"];
           attribute_type_id?: parameters["rowFilter.attribute.attribute_type_id"];
+          photo_url?: parameters["rowFilter.attribute.photo_url"];
         };
         body: {
           /** attribute */
@@ -1384,6 +1393,8 @@ export interface definitions {
      * This is a Foreign Key to `house.id`.<fk table='house' column='id'/>
      */
     house_id?: number;
+    /** Format: text */
+    photo_url?: string;
   };
   inspection: {
     /**
@@ -1468,6 +1479,8 @@ export interface definitions {
      * This is a Foreign Key to `attribute.id`.<fk table='attribute' column='id'/>
      */
     attribute_id?: number;
+    /** Format: text */
+    photo_url?: string;
   };
   room_type: {
     /**
@@ -1614,6 +1627,8 @@ export interface definitions {
      * This is a Foreign Key to `attribute_type.id`.<fk table='attribute_type' column='id'/>
      */
     attribute_type_id?: number;
+    /** Format: text */
+    photo_url?: string;
   };
 }
 
@@ -1686,6 +1701,8 @@ export interface parameters {
   "rowFilter.room.notes": string;
   /** Format: bigint */
   "rowFilter.room.house_id": string;
+  /** Format: text */
+  "rowFilter.room.photo_url": string;
   /** @description inspection */
   "body.inspection": definitions["inspection"];
   /** Format: bigint */
@@ -1730,6 +1747,8 @@ export interface parameters {
   "rowFilter.attribute_trait.notes": string;
   /** Format: bigint */
   "rowFilter.attribute_trait.attribute_id": string;
+  /** Format: text */
+  "rowFilter.attribute_trait.photo_url": string;
   /** @description room_type */
   "body.room_type": definitions["room_type"];
   /** Format: bigint */
@@ -1810,6 +1829,8 @@ export interface parameters {
   "rowFilter.attribute.notes": string;
   /** Format: bigint */
   "rowFilter.attribute.attribute_type_id": string;
+  /** Format: text */
+  "rowFilter.attribute.photo_url": string;
 }
 
 export interface operations {}

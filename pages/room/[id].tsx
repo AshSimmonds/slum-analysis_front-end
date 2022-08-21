@@ -8,6 +8,7 @@ import { Room } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import AttributeList from '../../components/AttributeList'
+import { EditRoomPhoto } from '../../components/RoomPhoto'
 
 export interface Props {
     session: AuthSession
@@ -21,6 +22,7 @@ export default function RoomForm({ session }: Props) {
     const [inspection_id, setInspectionId] = useState<number>(0)
     const [room_type_id, setRoomTypeId] = useState<number>(0)
     const [house_id, setHouseId] = useState<number>(0)
+    const [photo_url, setPhotoUrl] = useState<string>('')
 
 
 
@@ -46,6 +48,7 @@ export default function RoomForm({ session }: Props) {
             setInspectionId(room.inspection_id!)
             setRoomTypeId(room.room_type_id!)
             setHouseId(room.house_id!)
+            setPhotoUrl(room.photo_url!)
         }
     }, [room])
 
@@ -56,6 +59,7 @@ export default function RoomForm({ session }: Props) {
         inspection_id,
         room_type_id,
         house_id,
+        photo_url,
     }: {
         name: string
         notes: string
@@ -63,6 +67,7 @@ export default function RoomForm({ session }: Props) {
         inspection_id: number
         room_type_id: number
         house_id: number
+        photo_url: string
     }) {
         try {
             setUpdating(true)
@@ -74,6 +79,7 @@ export default function RoomForm({ session }: Props) {
                 inspection_id,
                 room_type_id,
                 house_id,
+                photo_url,
             }
 
             console.log('updateRoom - updates: ', updates)
@@ -146,6 +152,10 @@ export default function RoomForm({ session }: Props) {
     const roomEditForm = room ?? null ? (
         <div key={room?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
+        <figure className='h-60 max-h-60 bg-neutral' >
+            <EditRoomPhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
+        </figure>
+
             <div className="card-body">
 
 
@@ -153,7 +163,7 @@ export default function RoomForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateRoom({ name, notes, description, inspection_id, room_type_id, house_id })}
+                        onClick={() => updateRoom({ name, notes, description, inspection_id, room_type_id, house_id, photo_url })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
