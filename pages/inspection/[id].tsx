@@ -9,6 +9,7 @@ import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { HouseThumbCard } from '../../components/HouseCard'
 import { RoomCardToRename } from '../../components/RoomCard'
+import { HouseOptions } from '../../components/HouseList'
 
 export interface Props {
     session: AuthSession
@@ -190,15 +191,14 @@ export default function InspectionForm({ session }: Props) {
                             <select
                                 className="select select-bordered text-lg "
                                 id="house_id"
+                                disabled={updating}
                                 value={house_id || 0}
                                 onChange={(e) => setHouseId(Number(e.target.value))}
                             >
                                 <option value={0}>Select house</option>
-                                <option value={7}>Seven</option>
-                                <option value={14}>Fourteen</option>
-                                <option value={24}>Twenty Four</option>
-                                <option value={27}>Twenty Seven</option>
-                                <option value={666}>Satan</option>
+
+                                <HouseOptions session={session} />
+                                
                             </select>
 
                         </label>

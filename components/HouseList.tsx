@@ -57,3 +57,22 @@ export default function HouseList({ session }: Props) {
 }
 
 
+
+export function HouseOptions({ session }: Props) {
+    const { loading, error, houses } = GetHouses(session)
+
+    const houseOptions = houses ?
+        houses.map((house: House) => {
+            return (
+                <option key={house.id} value={house.id}>{house.id} | {house.address}</option>
+            )
+
+        }) : <option value="0">No houses found</option>
+
+    return (
+        <>
+            {houseOptions}
+        </>
+    );
+
+}
