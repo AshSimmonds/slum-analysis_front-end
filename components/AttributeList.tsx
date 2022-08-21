@@ -1,7 +1,7 @@
 import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
-import { Attribute } from '../types/ash'
-import { GetAttributes } from '../utils/hooks/useAttribute'
+import { Attribute, AttributeType } from '../types/ash'
+import { GetAttributes, GetAttributeTypes } from '../utils/hooks/useAttribute'
 import AttributeCard from './AttributeCard'
 
 
@@ -79,4 +79,23 @@ export function AttributeOptions({ session }: Props) {
 
 }
 
+
+export function AttributeTypeOptions({ session }: Props) {
+    const { loading, error, attributeTypes } = GetAttributeTypes(session)
+
+    const attributeTypeOptions = attributeTypes ?
+        attributeTypes.map((attributeType: AttributeType) => {
+            return (
+                <option key={attributeType.id} value={attributeType.id}>{attributeType.id} | {attributeType.name}</option>
+            )
+
+        }) : <option value="0">AttributeTypeless</option>
+
+    return (
+        <>
+            {attributeTypeOptions}
+        </>
+    );
+
+}
 

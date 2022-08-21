@@ -1,4 +1,4 @@
-import type { House, TraitType } from '../types/ash'
+import type { AttributeType, House, TraitType } from '../types/ash'
 import type { Inspection } from '../types/ash'
 import type { Room } from '../types/ash'
 import type { Attribute } from '../types/ash'
@@ -10,6 +10,7 @@ export const db = {
     inspections: () => supabase.from<Inspection>('inspection'),
     rooms: () => supabase.from<Room>('room'),
     attributes: () => supabase.from<Attribute>('attribute'),
+    attributeTypes: () => supabase.from<AttributeType>('attribute_type'),
     traits: () => supabase.from<Trait>('attribute_trait'),
     traitTypes: () => supabase.from<TraitType>('attribute_trait_type'),
     roomKinds: () => supabase.from<Room>('room_type'),

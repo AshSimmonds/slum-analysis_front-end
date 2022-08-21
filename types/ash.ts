@@ -6,6 +6,7 @@ export type TraitType = definitions['attribute_trait_type'];
 export type Attribute = definitions['attribute'] & {
     traits?: Trait[];
 };
+export type AttributeType = definitions['attribute_type'];
 
 
 export type RoomKind = definitions['room_type'];

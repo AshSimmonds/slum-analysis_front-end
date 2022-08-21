@@ -9,6 +9,7 @@ import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { EditAttributePhoto } from '../../components/AttributePhoto'
 import { RoomOptions } from '../../components/RoomList'
+import { AttributeTypeOptions } from '../../components/AttributeList'
 
 export interface Props {
     session: AuthSession
@@ -172,12 +173,9 @@ export default function AttributeForm({ session }: Props) {
                                 onChange={(e) => setAttributeTypeId(Number(e.target.value))}
                             >
                                 <option value={0}>Select type</option>
-                                <option value={1}>letterbox</option>
-                                <option value={2}>driveway</option>
-                                <option value={5}>fence - front</option>
-                                <option value={11}>walls - left</option>
-                                <option value={15}>porch</option>
-                                <option value={666}>hole</option>
+
+                                <AttributeTypeOptions session={session} />
+
                             </select>
 
                         </label>
