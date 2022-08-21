@@ -7,6 +7,7 @@ import { GetAttribute } from '../../utils/hooks/useAttribute'
 import { Attribute } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
+import { EditAttributePhoto } from '../../components/AttributePhoto'
 
 export interface Props {
     session: AuthSession
@@ -18,6 +19,7 @@ export default function AttributeForm({ session }: Props) {
     const [attribute_type_id, setAttributeTypeId] = useState<number>(0)
     const [notes, setNotes] = useState<string>('')
     const [room_id, setRoomId] = useState<number>(0)
+    const [photo_url, setPhotoUrl] = useState<string>('')
 
 
 
@@ -41,6 +43,7 @@ export default function AttributeForm({ session }: Props) {
             setRoomId(attribute.room_id!)
             setConditionId(attribute.condition_id!)
             setAttributeTypeId(attribute.attribute_type_id!)
+            setPhotoUrl(attribute.photo_url!)
         }
     }, [attribute])
 
@@ -48,12 +51,14 @@ export default function AttributeForm({ session }: Props) {
         room_id,
         notes,
         condition_id,
-        attribute_type_id
+        attribute_type_id,
+        photo_url,
     }: {
         room_id: number;
         notes: string
         condition_id: number
         attribute_type_id: number
+        photo_url: string
     }) {
         try {
             setUpdating(true)
@@ -62,7 +67,8 @@ export default function AttributeForm({ session }: Props) {
                 room_id,
                 notes,
                 condition_id,
-                attribute_type_id
+                attribute_type_id,
+                photo_url,
             }
 
             console.log(updates)
@@ -135,6 +141,10 @@ export default function AttributeForm({ session }: Props) {
     const attributeEditForm = attribute ?? null ? (
         <div key={attribute?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
+        <figure className='h-60 max-h-60 bg-neutral' >
+            <EditAttributePhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
+        </figure>
+
             <div className="card-body">
 
 
@@ -142,7 +152,7 @@ export default function AttributeForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateAttribute({ notes, room_id, condition_id, attribute_type_id })}
+                        onClick={() => updateAttribute({ notes, room_id, condition_id, attribute_type_id, photo_url })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
