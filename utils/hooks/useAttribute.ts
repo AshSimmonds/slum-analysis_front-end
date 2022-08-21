@@ -127,9 +127,14 @@ export function GetAttributes(session: AuthSession) {
         })()
     }, [session])
 
-    console.log('GetAttributes - loading', loading)
-    console.log('GetAttributes - error', error)
-    console.log('GetAttributes - attributes', attributes)
+    if (loading) {
+        console.count('GetAttributes - loading: ' + loading + ' | callCownt')
+    }
+    if (error) {
+        console.count('GetAttributes - error: ' + error + ' | callCownt')
+    } else {
+        console.count('GetAttributes - attributes.length: ' + attributes?.length + ' | callCownt')
+    }
 
     return { loading, error, attributes }
 }

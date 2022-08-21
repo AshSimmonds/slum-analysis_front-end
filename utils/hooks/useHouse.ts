@@ -128,9 +128,14 @@ export function GetHouses(session: AuthSession) {
         })()
     }, [session])
 
-    console.log('loading', loading)
-    console.log('error', error)
-    console.log('houses', houses)
+    if (loading) {
+        console.count('GetHouses - loading: ' + loading + ' | callCownt')
+    }
+    if (error) {
+        console.count('GetHouses - error: ' + error + ' | callCownt')
+    } else {
+        console.count('GetHouses - houses.length: ' + houses?.length + ' | callCownt')
+    }
 
     return { loading, error, houses }
 }

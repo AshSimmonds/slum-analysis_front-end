@@ -133,11 +133,13 @@ export function GetInspections(session: AuthSession) {
         })()
     }, [session])
 
-    // console.log('GetInspections - loading', loading)
+    if (loading) {
+        console.count('GetInspections - loading: ' + loading + ' | callCownt')
+    }
     if (error) {
-        console.log('GetInspections - error', error)
+        console.count('GetInspections - error: ' + error + ' | callCownt')
     } else {
-        console.log('GetInspections - inspections', inspections)
+        console.count('GetInspections - inspections.length: ' + inspections?.length + ' | callCownt')
     }
 
     return { loading, error, inspections }

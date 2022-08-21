@@ -87,11 +87,14 @@ export function GetRoom(session: AuthSession, roomId: number) {
         })()
     }, [roomId, session])
 
-    // console.log('GetRoom - loading', loading)
+    if (loading) {
+        console.count('GetRoom - loading: ' + loading + ' | callCownt')
+    }
     if (error) {
-        console.log('GetRoom - error', error)
+        console.count('GetRoom - error: ' + error + ' | callCownt')
     } else {
-        console.log('GetRoom - room', room)
+        console.count('GetRoom - room: ' + room + ' | callCownt')
+        console.log('GetRoom - room object:', room)
     }
 
     return { loading, error, room }
