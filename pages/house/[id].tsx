@@ -8,6 +8,7 @@ import { House } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { HouseThumbCard } from '../../components/HouseCard'
+import { EditHousePhoto } from '../../components/HousePhoto'
 
 export interface Props {
     session: AuthSession
@@ -18,6 +19,7 @@ export default function HouseForm({ session }: Props) {
     const [address, setAddress] = useState<string>('')
     const [notes, setNotes] = useState<string>('')
     const [construct_date, setConstructDate] = useState<string>('')
+    const [photo_url, setPhotoUrl] = useState<string>('')
 
 
 
@@ -40,6 +42,7 @@ export default function HouseForm({ session }: Props) {
             setAddress(house.address!)
             setNotes(house.notes!)
             setConstructDate(house.construct_date!)
+            setPhotoUrl(house.photo_url!)
         }
     }, [house])
 
@@ -47,10 +50,12 @@ export default function HouseForm({ session }: Props) {
         address,
         notes,
         construct_date,
+        photo_url,
     }: {
         address: string
         notes: string
         construct_date: string
+        photo_url: string
     }) {
         try {
             setUpdating(true)
@@ -59,6 +64,7 @@ export default function HouseForm({ session }: Props) {
                 address,
                 notes,
                 construct_date,
+                photo_url,
             }
 
             console.log(updates)
@@ -130,6 +136,11 @@ export default function HouseForm({ session }: Props) {
 
     const houseEditForm = house ?? null ? (
         <div key={house?.id} className='my-4 card bg-base-300 shadow-2xl'>
+
+            <figure className='h-60 max-h-60 bg-neutral' >
+                <EditHousePhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
+            </figure>
+
             <div className="card-body">
 
                 <form className="flex flex-col space-y-4">
@@ -201,7 +212,7 @@ export default function HouseForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateHouse({ address, notes, construct_date })}
+                        onClick={() => updateHouse({ address, notes, construct_date, photo_url })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Update'}

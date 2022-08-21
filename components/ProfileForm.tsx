@@ -71,10 +71,8 @@ export function ProfileForm({ session }: Props) {
 
 
         <div className="card max-w-sm bg-base-300 shadow-2xl">
-            <figure>
-                {/* <img src="https://placeimg.com/400/225/arch" alt="Shoes" /> */}
+            <figure >
                 <EditAvatar url={avatar_url} onUpload={(url) => setAvatarUrl(url)} />
-
             </figure>
             <div className="card-body">
 

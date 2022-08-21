@@ -423,6 +423,7 @@ export interface paths {
                     address?: parameters["rowFilter.house.address"];
                     notes?: parameters["rowFilter.house.notes"];
                     construct_date?: parameters["rowFilter.house.construct_date"];
+                    photo_url?: parameters["rowFilter.house.photo_url"];
                     /** Filtering Columns */
                     select?: parameters["select"];
                     /** Ordering */
@@ -478,6 +479,7 @@ export interface paths {
                     address?: parameters["rowFilter.house.address"];
                     notes?: parameters["rowFilter.house.notes"];
                     construct_date?: parameters["rowFilter.house.construct_date"];
+                    photo_url?: parameters["rowFilter.house.photo_url"];
                 };
                 header: {
                     /** Preference */
@@ -497,6 +499,7 @@ export interface paths {
                     address?: parameters["rowFilter.house.address"];
                     notes?: parameters["rowFilter.house.notes"];
                     construct_date?: parameters["rowFilter.house.construct_date"];
+                    photo_url?: parameters["rowFilter.house.photo_url"];
                 };
                 body: {
                     /** house */
@@ -1434,6 +1437,8 @@ export interface definitions {
         notes?: string;
         /** Format: date */
         construct_date?: string;
+        /** Format: text */
+        photo_url?: string;
     };
     attribute_trait: {
         /**
@@ -1709,6 +1714,8 @@ export interface parameters {
     "rowFilter.house.notes": string;
     /** Format: date */
     "rowFilter.house.construct_date": string;
+    /** Format: text */
+    "rowFilter.house.photo_url": string;
     /** @description attribute_trait */
     "body.attribute_trait": definitions["attribute_trait"];
     /** Format: bigint */
