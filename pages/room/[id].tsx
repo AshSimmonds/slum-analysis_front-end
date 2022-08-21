@@ -275,6 +275,9 @@ export default function RoomForm({ session }: Props) {
                                 <option value={666}>Satan</option>
                             </select>
 
+                            <span className='bg-transparent text-neutral-content text-xs'><Link href="/house/[id]" as={`/house/${house_id}`}>link</Link></span>
+
+
                         </label>
                     </div>
 
@@ -302,7 +305,10 @@ export default function RoomForm({ session }: Props) {
                                 <option value={666}>Satan</option>
                             </select>
 
+                            <span className='bg-transparent text-neutral-content text-xs'><Link href="/inspection/[id]" as={`/inspection/${inspection_id}`}>link</Link></span>
+
                         </label>
+                        
                     </div>
 
 

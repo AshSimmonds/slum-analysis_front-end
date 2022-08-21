@@ -18,6 +18,7 @@ function attributeMagick(
         notes?: string | undefined;
         room_id?: number | undefined;
         condition_id?: number | undefined;
+        attribute_type_id?: number | undefined;
     }): JSX.Element {
     return <AttributeCard
         key={attribute.id}
@@ -26,6 +27,7 @@ function attributeMagick(
         created_at={attribute.created_at}
         room_id={attribute.room_id}
         condition_id={attribute.condition_id}
+        attribute_type_id={attribute.attribute_type_id}
     />
 }
 

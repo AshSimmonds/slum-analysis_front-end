@@ -239,7 +239,10 @@ export default function AttributeForm({ session }: Props) {
                                 <option value={666}>Satan</option>
                             </select>
 
+                            <span className='bg-transparent text-neutral-content text-xs'><Link href="/room/[id]" as={`/room/${room_id}`}>link</Link></span>
+
                         </label>
+                        
                     </div>
 
 

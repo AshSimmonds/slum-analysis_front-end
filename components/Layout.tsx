@@ -173,9 +173,9 @@ export function Layout(this: any, { session, children }: PropsWithChildren<Props
                 <title>Slum Analysis</title>
             </Head>
 
-            <ThemeProvider defaultTheme="system">
+            <ThemeProvider defaultTheme="jbpslight">
 
-                <div className="flex flex-col min-h-screen " data-theme="system" >
+                <div className="flex flex-col min-h-screen " data-theme="jbpslight" >
 
 
                     {/* <HeaderScastiel access_token={''} token_type={''} user={null} {...searchBarProps} /> */}
