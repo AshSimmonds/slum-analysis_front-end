@@ -15,6 +15,7 @@ export interface Props {
 export default function AttributeForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
     const [condition_id, setConditionId] = useState<number>(0)
+    const [attribute_type_id, setAttributeTypeId] = useState<number>(0)
     const [notes, setNotes] = useState<string>('')
     const [room_id, setRoomId] = useState<number>(0)
 
@@ -39,6 +40,7 @@ export default function AttributeForm({ session }: Props) {
             setNotes(attribute.notes!)
             setRoomId(attribute.room_id!)
             setConditionId(attribute.condition_id!)
+            setAttributeTypeId(attribute.attribute_type_id!)
         }
     }, [attribute])
 
@@ -46,10 +48,12 @@ export default function AttributeForm({ session }: Props) {
         room_id,
         notes,
         condition_id,
+        attribute_type_id
     }: {
         room_id: number;
         notes: string
         condition_id: number
+        attribute_type_id: number
     }) {
         try {
             setUpdating(true)
@@ -58,6 +62,7 @@ export default function AttributeForm({ session }: Props) {
                 room_id,
                 notes,
                 condition_id,
+                attribute_type_id
             }
 
             console.log(updates)
@@ -137,13 +142,35 @@ export default function AttributeForm({ session }: Props) {
 
                     <button
                         className="btn btn-primary"
-                        onClick={() => updateAttribute({ notes, room_id, condition_id })}
+                        onClick={() => updateAttribute({ notes, room_id, condition_id, attribute_type_id })}
                         disabled={updating}
                     >
                         {updating ? 'Updating…' : 'Save'}
                     </button>
 
 
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Type</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="attribute_type_id"
+                                value={attribute_type_id || 0}
+                                onChange={(e) => setAttributeTypeId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select type</option>
+                                <option value={1}>letterbox</option>
+                                <option value={2}>driveway</option>
+                                <option value={5}>fence - front</option>
+                                <option value={11}>walls - left</option>
+                                <option value={15}>porch</option>
+                                <option value={666}>hole</option>
+                            </select>
+
+                        </label>
+                    </div>
 
 
 
