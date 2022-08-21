@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
 import Router from 'next/router'
-import { GetRoom } from '../../utils/hooks/useRoom'
+import { GetRoom, GetRoomKinds } from '../../utils/hooks/useRoom'
 import { Room } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
@@ -11,6 +11,7 @@ import AttributeList from '../../components/AttributeList'
 import { EditRoomPhoto } from '../../components/RoomPhoto'
 import { HouseOptions } from '../../components/HouseList'
 import { InspectionOptions } from '../../components/InspectionList'
+import { RoomKindOptions } from '../../components/RoomList'
 
 export interface Props {
     session: AuthSession
@@ -207,15 +208,9 @@ export default function RoomForm({ session }: Props) {
                                 onChange={(e) => setRoomTypeId(Number(e.target.value))}
                             >
                                 <option value={0}>Select type</option>
-                                <option value={1}>ceiling space</option>
-                                <option value={2}>lounge</option>
-                                <option value={3}>passage</option>
-                                <option value={4}>kitchen</option>
-                                <option value={5}>bedroom</option>
-                                <option value={6}>bathroom</option>
-                                <option value={7}>toilet</option>
-                                <option value={8}>laundry</option>
-                                <option value={666}>Hell</option>
+
+                                <RoomKindOptions session={session} />
+
                             </select>
 
                         </label>

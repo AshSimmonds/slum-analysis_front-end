@@ -10,6 +10,7 @@ export const db = {
     inspections: () => supabase.from<Inspection>('inspection'),
     rooms: () => supabase.from<Room>('room'),
     attributes: () => supabase.from<Attribute>('attribute'),
-    traits: () => supabase.from<Trait>('attribute_trait')
+    traits: () => supabase.from<Trait>('attribute_trait'),
+    roomKinds: () => supabase.from<Room>('room_type'),
 
 }

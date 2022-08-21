@@ -1,7 +1,7 @@
 import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
-import { Room } from '../types/ash'
-import { GetRooms } from '../utils/hooks/useRoom'
+import { Room, RoomKind } from '../types/ash'
+import { GetRoomKinds, GetRooms } from '../utils/hooks/useRoom'
 import { roomMagick } from './RoomCard'
 
 
@@ -56,4 +56,28 @@ export function RoomOptions({ session }: Props) {
     );
 
 }
+
+
+
+
+
+export function RoomKindOptions({ session }: Props) {
+    const { loading, error, roomKinds } = GetRoomKinds(session)
+
+    const roomKindOptions = roomKinds ?
+        roomKinds.map((roomKind: RoomKind) => {
+            return (
+                <option key={roomKind.id} value={roomKind.id}>{roomKind.id} | {roomKind.name}</option>
+            )
+
+        }) : <option value="0">No kinds of rooms found</option>
+
+    return (
+        <>
+            {roomKindOptions}
+        </>
+    );
+
+}
+
 
