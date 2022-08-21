@@ -1,7 +1,7 @@
 import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
-import { Trait } from '../types/ash'
-import { GetTraits } from '../utils/hooks/useTrait'
+import { Trait, TraitType } from '../types/ash'
+import { GetTraits, GetTraitTypes } from '../utils/hooks/useTrait'
 import TraitCard from './TraitCard'
 
 
@@ -56,6 +56,49 @@ export default function TraitList({ session }: Props) {
 
         </>
     );
+}
+
+
+
+
+export function TraitOptions({ session }: Props) {
+    const { loading, error, traits } = GetTraits(session)
+
+    const traitOptions = traits ?
+        traits.map((trait: Trait) => {
+            return (
+                <option key={trait.id} value={trait.id}>{trait.id} | {trait.notes}</option>
+            )
+
+        }) : <option value="0">Traitless</option>
+
+    return (
+        <>
+            {traitOptions}
+        </>
+    );
+
+}
+
+
+
+export function TraitTypeOptions({ session }: Props) {
+    const { loading, error, traitTypes } = GetTraitTypes(session)
+
+    const traitTypeOptions = traitTypes ?
+        traitTypes.map((traitType: TraitType) => {
+            return (
+                <option key={traitType.id} value={traitType.id}>{traitType.id} | {traitType.name}</option>
+            )
+
+        }) : <option value="0">TraitTypeless</option>
+
+    return (
+        <>
+            {traitTypeOptions}
+        </>
+    );
+
 }
 
 

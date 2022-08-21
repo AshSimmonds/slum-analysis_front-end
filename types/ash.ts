@@ -1,6 +1,7 @@
 import type { definitions } from './supabase'
 
 export type Trait = definitions['attribute_trait'];
+export type TraitType = definitions['attribute_trait_type'];
 
 export type Attribute = definitions['attribute'] & {
     traits?: Trait[];

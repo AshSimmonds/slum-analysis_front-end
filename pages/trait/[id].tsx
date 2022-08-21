@@ -8,6 +8,8 @@ import { Trait } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { EditTraitPhoto } from '../../components/TraitPhoto'
+import { AttributeOptions } from '../../components/AttributeList'
+import { TraitTypeOptions } from '../../components/TraitList'
 
 export interface Props {
     session: AuthSession
@@ -104,7 +106,7 @@ export default function TraitForm({ session }: Props) {
         try {
             setUpdating(true)
 
-            throw new Error ('No delete for your safety')
+            throw new Error('No delete for your safety')
 
             const { data, error } = await db
                 .traits()
@@ -141,9 +143,9 @@ export default function TraitForm({ session }: Props) {
     const traitEditForm = trait ?? null ? (
         <div key={trait?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
-        <figure className='h-60 max-h-60 bg-neutral' >
-            <EditTraitPhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
-        </figure>
+            <figure className='h-60 max-h-60 bg-neutral' >
+                <EditTraitPhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
+            </figure>
 
             <div className="card-body">
 
@@ -157,6 +159,52 @@ export default function TraitForm({ session }: Props) {
                     >
                         {updating ? 'Updating…' : 'Save'}
                     </button>
+
+
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>Attribute</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="attribute_id"
+                                value={attribute_id || 0}
+                                onChange={(e) => setAttributeId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select attribute</option>
+
+                                <AttributeOptions session={session} />
+
+                            </select>
+
+                            <span className='bg-transparent text-neutral-content text-xs'><Link href="/attribute/[id]" as={`/attribute/${attribute_id}`}>link</Link></span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <div className="form-control">
+                        <label className="input-group">
+                            <span className='bg-neutral text-neutral-content text-xs'>attribute_trait_type</span>
+
+                            <select
+                                className="select select-bordered text-lg "
+                                id="type_attribute_trait_type_id"
+                                value={attribute_trait_type_id || 0}
+                                onChange={(e) => setAttributeTraitTypeId(Number(e.target.value))}
+                            >
+                                <option value={0}>Select type</option>
+                                <TraitTypeOptions session={session} />
+                            </select>
+
+                        </label>
+                    </div>
+
 
 
 
@@ -179,32 +227,6 @@ export default function TraitForm({ session }: Props) {
                     </div>
 
 
-
-
-                    <div className="form-control">
-                        <label className="input-group">
-                            <span className='bg-neutral text-neutral-content text-xs'>attribute_trait_type</span>
-
-                            <select
-                                className="select select-bordered text-lg "
-                                id="type_attribute_trait_type_id"
-                                value={attribute_trait_type_id || 0}
-                                onChange={(e) => setAttributeTraitTypeId(Number(e.target.value))}
-                            >
-                                <option value={0}>Select type</option>
-                                <option value={1}>good</option>
-                                <option value={2}>ok</option>
-                                <option value={3}>shit</option>
-                                <option value={4}>asdf</option>
-                                <option value={666}>Hellspawn</option>
-                            </select>
-
-                        </label>
-                    </div>
-
-
-
-
                     <div className="form-control">
                         <label className="input-group">
                             <span className='bg-neutral text-neutral-content text-xs'>Notes</span>
@@ -225,31 +247,6 @@ export default function TraitForm({ session }: Props) {
 
 
 
-
-                    <div className="form-control">
-                        <label className="input-group">
-                            <span className='bg-neutral text-neutral-content text-xs'>Attribute</span>
-
-                            <select
-                                className="select select-bordered text-lg "
-                                id="attribute_id"
-                                value={attribute_id || 0}
-                                onChange={(e) => setAttributeId(Number(e.target.value))}
-                            >
-                                <option value={0}>Select attribute</option>
-                                <option value={2}>Two</option>
-                                <option value={5}>Five</option>
-                                <option value={7}>Seven</option>
-                                <option value={9}>Nine</option>
-                                <option value={24}>Twenty Four</option>
-                                <option value={666}>Satan</option>
-                            </select>
-
-                            <span className='bg-transparent text-neutral-content text-xs'><Link href="/attribute/[id]" as={`/attribute/${attribute_id}`}>link</Link></span>
-
-                        </label>
-                        
-                    </div>
 
 
 

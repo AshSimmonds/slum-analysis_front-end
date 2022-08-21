@@ -1,7 +1,7 @@
 import { AuthSession } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
 import { db } from '../db'
-import { Trait } from '../../types/ash'
+import { Trait, TraitType } from '../../types/ash'
 
 
 
@@ -133,3 +133,47 @@ export function GetTraits(session: AuthSession) {
 
     return { loading, error, traits }
 }
+
+
+
+
+export function GetTraitTypes(session: AuthSession) {
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<any | null>(null)
+    const [traitTypes, setTraitTypes] = useState<TraitType[] | null>(null)
+
+    useEffect(() => {
+        ; (async function () {
+            try {
+                setLoading(true)
+
+                const { data, error, status } = await db
+                    .traitTypes()
+                    .select('*')
+                // .eq('id', user.id)
+                // .single()
+
+                if (error && status !== 406) {
+                    throw error
+                }
+
+                if (data) {
+                    setTraitTypes(data)
+                }
+            } catch (error: any) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
+        })()
+    }, [session])
+
+    // console.log('GetTraitTypes - loading', loading)
+    // console.log('GetTraitTypes - error', error)
+    // console.log('GetTraitTypes - traitTypes', traitTypes)
+
+    return { loading, error, traitTypes }
+}
+
+
+
