@@ -1,7 +1,7 @@
 import { AuthSession } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
 import { db } from '../db'
-import { Attribute, AttributeType } from '../../types/ash'
+import { Attribute, AttributeType, Condition } from '../../types/ash'
 
 
 
@@ -174,4 +174,46 @@ export function GetAttributeTypes(session: AuthSession) {
 
     return { loading, error, attributeTypes }
 }
+
+
+
+
+
+
+export function GetConditions(session: AuthSession) {
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<any | null>(null)
+    const [conditions, setConditions] = useState<Condition[] | null>(null)
+
+    useEffect(() => {
+        ; (async function () {
+            try {
+                setLoading(true)
+
+                const { data, error, status } = await db
+                    .conditions()
+                    .select('*')
+                // .eq('id', user.id)
+                // .single()
+
+                if (error && status !== 406) {
+                    throw error
+                }
+
+                if (data) {
+                    setConditions(data)
+                }
+            } catch (error: any) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
+        })()
+    }, [session])
+
+
+    return { loading, error, conditions }
+}
+
+
 

@@ -282,6 +282,7 @@ export default function TraitForm({ session }: Props) {
     return (
 
         <Layout session={session}>
+            <button className="btn btn-primary" onClick={() => Router.push('/trait/[id]', `/trait/${traitId}`)}>ಠ_ಠ</button>
 
             <h1>Trait: #{traitId}</h1>
 

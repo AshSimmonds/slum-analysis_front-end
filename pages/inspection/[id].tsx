@@ -244,6 +244,7 @@ export default function InspectionForm({ session }: Props) {
     return (
 
         <Layout session={session}>
+            <button className="btn btn-primary" onClick={() => Router.push('/inspection/[id]', `/inspection/${inspectionId}`)}>ಠ_ಠ</button>
 
             <h1>Inspection: #{inspectionId}</h1>
 

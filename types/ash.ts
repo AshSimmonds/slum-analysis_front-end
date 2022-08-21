@@ -8,6 +8,8 @@ export type Attribute = definitions['attribute'] & {
 };
 export type AttributeType = definitions['attribute_type'];
 
+export type Condition = definitions['condition'];
+
 
 export type RoomKind = definitions['room_type'];
 

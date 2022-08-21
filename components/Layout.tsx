@@ -11,6 +11,7 @@ export interface Props {
 
 import 'tailwindcss/tailwind.css'
 import { useTheme } from 'next-themes'
+import Router from 'next/router'
 
 const ThemeChanger = () => {
     const { theme, setTheme } = useTheme()

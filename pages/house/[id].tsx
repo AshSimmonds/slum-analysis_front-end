@@ -238,6 +238,7 @@ export default function HouseForm({ session }: Props) {
     return (
 
         <Layout session={session}>
+            <button className="btn btn-primary" onClick={() => Router.push('/house/[id]', `/house/${houseId}`)}>ಠ_ಠ</button>
 
             <h1>House: #{houseId}</h1>
 

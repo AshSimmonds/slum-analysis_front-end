@@ -1,5 +1,5 @@
 import { AuthSession } from '@supabase/supabase-js'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { db } from '../../utils/db'
 import { useRouter } from 'next/router'
 import Router from 'next/router'
@@ -17,6 +17,35 @@ export interface Props {
     session: AuthSession
 }
 
+
+function useEffectOnce(effect: any) {
+    const effectFn = useRef(effect)
+    const destroyFn = useRef()
+    const effectCalled = useRef(false)
+    const rendered = useRef(false)
+    const [, refresh] = useState(0)
+
+    if (effectCalled.current) {
+        rendered.current = true
+    }
+
+    useEffect(() => {
+        if (!effectCalled.current) {
+            destroyFn.current = effectFn.current()
+            effectCalled.current = true
+        }
+
+        refresh(1)
+
+        return () => {
+            if (rendered.current === false) return
+            if (destroyFn.current) destroyFn.current
+        }
+    }, [])
+}
+
+
+
 export default function RoomForm({ session }: Props) {
     const [updating, setUpdating] = useState(false)
     const [name, setName] = useState<string>('')
@@ -26,24 +55,31 @@ export default function RoomForm({ session }: Props) {
     const [room_type_id, setRoomTypeId] = useState<number>(0)
     const [house_id, setHouseId] = useState<number>(0)
     const [photo_url, setPhotoUrl] = useState<string>('')
+    const [roomId, setRoomId] = useState<number>(0)
 
+    let fuckingGiveUp = false
 
+    const router = useRouter();
 
     const { query, isReady } = useRouter()
 
-    // if (!isReady) {
-    //     return
-    //     <>
-    //         Loading
-    //     </>
-    // }
-
-    const roomId = Number(query.id)
+    const id = Number(query.id)
 
     const { loading, error, room } = GetRoom(session, roomId)
 
-
     useEffect(() => {
+
+    // useEffectOnce(() => {
+        // console.log('i fire once');
+
+        // const { loading, error, room } = GetRoom(session, roomId)
+
+        async function getShit() {
+            setRoomId(id)
+        }
+
+        // Router.push('/room/[id]', `/room/${roomId}`)
+
         if (room) {
             setName(room.name!)
             setNotes(room.notes!)
@@ -52,8 +88,19 @@ export default function RoomForm({ session }: Props) {
             setRoomTypeId(room.room_type_id!)
             setHouseId(room.house_id!)
             setPhotoUrl(room.photo_url!)
-        }
-    }, [room])
+        } 
+
+        getShit()
+
+    //     return (
+    //         room
+    //     )
+    // });
+
+
+    }, [id, room, roomId])
+
+
 
     async function updateRoom({
         name,
@@ -347,9 +394,20 @@ export default function RoomForm({ session }: Props) {
 
 
 
+    // let soDoneNow = -1
+
+    // if (isReady && soDoneNow < 0) {
+    //     soDoneNow = 1
+    //     // setDescription(description)
+    // }
+
+
+
     return (
 
         <Layout session={session}>
+
+            <button className="btn btn-primary" onClick={() => Router.push('/room/[id]', `/room/${roomId}`)}>ಠ_ಠ</button>
 
             <h1>Room: #{roomId}</h1>
 

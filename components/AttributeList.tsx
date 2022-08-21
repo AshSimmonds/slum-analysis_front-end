@@ -1,7 +1,7 @@
 import { AuthSession } from '@supabase/supabase-js'
 import Link from 'next/link'
-import { Attribute, AttributeType } from '../types/ash'
-import { GetAttributes, GetAttributeTypes } from '../utils/hooks/useAttribute'
+import { Attribute, AttributeType, Condition } from '../types/ash'
+import { GetAttributes, GetAttributeTypes, GetConditions } from '../utils/hooks/useAttribute'
 import AttributeCard from './AttributeCard'
 
 
@@ -98,4 +98,28 @@ export function AttributeTypeOptions({ session }: Props) {
     );
 
 }
+
+
+
+
+export function ConditionOptions({ session }: Props) {
+    const { loading, error, conditions } = GetConditions(session)
+
+    const conditionsOptions = conditions ?
+        conditions.map((condition: Condition) => {
+            return (
+                <option key={condition.id} value={condition.id}>{condition.id} | {condition.name}</option>
+            )
+
+        }) : <option value="0">just came to see the condition my condition was in</option>
+
+    return (
+        <>
+            {conditionsOptions}
+        </>
+    );
+
+}
+
+
 

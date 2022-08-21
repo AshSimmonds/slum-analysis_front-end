@@ -9,7 +9,7 @@ import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { EditAttributePhoto } from '../../components/AttributePhoto'
 import { RoomOptions } from '../../components/RoomList'
-import { AttributeTypeOptions } from '../../components/AttributeList'
+import { AttributeTypeOptions, ConditionOptions } from '../../components/AttributeList'
 
 export interface Props {
     session: AuthSession
@@ -194,12 +194,9 @@ export default function AttributeForm({ session }: Props) {
                                 value={condition_id || 0}
                                 onChange={(e) => setConditionId(Number(e.target.value))}
                             >
-                                <option value={0}>Select type</option>
-                                <option value={1}>good</option>
-                                <option value={2}>ok</option>
-                                <option value={3}>shit</option>
-                                <option value={4}>asdf</option>
-                                <option value={666}>Hellspawn</option>
+                                <option value={0}>Select condition</option>
+
+                                <ConditionOptions session={session} />
                             </select>
 
                         </label>
@@ -283,6 +280,7 @@ export default function AttributeForm({ session }: Props) {
     return (
 
         <Layout session={session}>
+            <button className="btn btn-primary" onClick={() => Router.push('/attribute/[id]', `/attribute/${attributeId}`)}>ಠ_ಠ</button>
 
             <h1>Attribute: #{attributeId}</h1>
 
