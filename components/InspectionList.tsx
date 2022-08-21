@@ -33,3 +33,31 @@ export default function InspectionList({ session }: Props) {
     );
 }
 
+
+
+
+export function InspectionOptions({ session }: Props) {
+    const { loading, error, inspections } = GetInspections(session)
+
+    const inspectionOptions = inspections ?
+        inspections.map((inspection: Inspection) => {
+            return (
+                <option
+                    key={inspection.id}
+                    value={inspection.id}>
+                    {inspection.id} |
+                    {inspection.inspection_date ? inspection.inspection_date.substring(0, 4) : '1837'} |
+                    {inspection.house?.address}
+                </option>
+            )
+
+        }) : <option value="0">No inspections found</option>
+
+    return (
+        <>
+            {inspectionOptions}
+        </>
+    );
+
+}
+

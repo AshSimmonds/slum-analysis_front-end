@@ -9,6 +9,8 @@ import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import AttributeList from '../../components/AttributeList'
 import { EditRoomPhoto } from '../../components/RoomPhoto'
+import { HouseOptions } from '../../components/HouseList'
+import { InspectionOptions } from '../../components/InspectionList'
 
 export interface Props {
     session: AuthSession
@@ -152,9 +154,9 @@ export default function RoomForm({ session }: Props) {
     const roomEditForm = room ?? null ? (
         <div key={room?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
-        <figure className='h-60 max-h-60 bg-neutral' >
-            <EditRoomPhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
-        </figure>
+            <figure className='h-60 max-h-60 bg-neutral' >
+                <EditRoomPhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
+            </figure>
 
             <div className="card-body">
 
@@ -277,12 +279,9 @@ export default function RoomForm({ session }: Props) {
                                 onChange={(e) => setHouseId(Number(e.target.value))}
                             >
                                 <option value={0}>Select house</option>
-                                <option value={5}>Two</option>
-                                <option value={7}>Five</option>
-                                <option value={8}>Six</option>
-                                <option value={14}>Fourteen</option>
-                                <option value={24}>Twenty Four</option>
-                                <option value={666}>Satan</option>
+
+                                <HouseOptions session={session} />
+
                             </select>
 
                             <span className='bg-transparent text-neutral-content text-xs'><Link href="/house/[id]" as={`/house/${house_id}`}>link</Link></span>
@@ -307,26 +306,23 @@ export default function RoomForm({ session }: Props) {
                                 onChange={(e) => setInspectionId(Number(e.target.value))}
                             >
                                 <option value={0}>Select inspection</option>
-                                <option value={2}>Two</option>
-                                <option value={5}>Five</option>
-                                <option value={6}>Six</option>
-                                <option value={14}>Fourteen</option>
-                                <option value={24}>Twenty Four</option>
-                                <option value={666}>Satan</option>
+
+                                <InspectionOptions session={session} />
+
                             </select>
 
                             <span className='bg-transparent text-neutral-content text-xs'><Link href="/inspection/[id]" as={`/inspection/${inspection_id}`}>link</Link></span>
 
                         </label>
-                        
+
                     </div>
 
 
 
 
-<div>
-    <AttributeList session={session} />
-</div>
+                    <div>
+                        <AttributeList session={session} />
+                    </div>
 
 
 

@@ -36,3 +36,24 @@ export default function RoomList({ session }: Props) {
 }
 
 
+
+
+export function RoomOptions({ session }: Props) {
+    const { loading, error, rooms } = GetRooms(session)
+
+    const roomOptions = rooms ?
+        rooms.map((room: Room) => {
+            return (
+                <option key={room.id} value={room.id}>{room.id} | {room.name}</option>
+            )
+
+        }) : <option value="0">No rooms found</option>
+
+    return (
+        <>
+            {roomOptions}
+        </>
+    );
+
+}
+

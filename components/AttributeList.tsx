@@ -59,3 +59,24 @@ export default function AttributeList({ session }: Props) {
 }
 
 
+
+export function AttributeOptions({ session }: Props) {
+    const { loading, error, attributes } = GetAttributes(session)
+
+    const attributeOptions = attributes ?
+        attributes.map((attribute: Attribute) => {
+            return (
+                <option key={attribute.id} value={attribute.id}>{attribute.id} | {attribute.notes}</option>
+            )
+
+        }) : <option value="0">No attributes found</option>
+
+    return (
+        <>
+            {attributeOptions}
+        </>
+    );
+
+}
+
+

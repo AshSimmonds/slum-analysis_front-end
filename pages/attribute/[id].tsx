@@ -8,6 +8,7 @@ import { Attribute } from '../../types/ash'
 import { Layout } from '../../components/Layout'
 import Link from 'next/link'
 import { EditAttributePhoto } from '../../components/AttributePhoto'
+import { RoomOptions } from '../../components/RoomList'
 
 export interface Props {
     session: AuthSession
@@ -104,7 +105,7 @@ export default function AttributeForm({ session }: Props) {
         try {
             setUpdating(true)
 
-            throw new Error ('No delete for your safety')
+            throw new Error('No delete for your safety')
 
             const { data, error } = await db
                 .attributes()
@@ -141,9 +142,9 @@ export default function AttributeForm({ session }: Props) {
     const attributeEditForm = attribute ?? null ? (
         <div key={attribute?.id} className='my-4 card bg-base-300 shadow-2xl'>
 
-        <figure className='h-60 max-h-60 bg-neutral' >
-            <EditAttributePhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
-        </figure>
+            <figure className='h-60 max-h-60 bg-neutral' >
+                <EditAttributePhoto url={photo_url} onUpload={(url) => setPhotoUrl(url)} />
+            </figure>
 
             <div className="card-body">
 
@@ -241,18 +242,13 @@ export default function AttributeForm({ session }: Props) {
                                 onChange={(e) => setRoomId(Number(e.target.value))}
                             >
                                 <option value={0}>Select room</option>
-                                <option value={2}>Two</option>
-                                <option value={5}>Five</option>
-                                <option value={7}>Seven</option>
-                                <option value={9}>Nine</option>
-                                <option value={24}>Twenty Four</option>
-                                <option value={666}>Satan</option>
+                                <RoomOptions session={session} />
                             </select>
 
                             <span className='bg-transparent text-neutral-content text-xs'><Link href="/room/[id]" as={`/room/${room_id}`}>link</Link></span>
 
                         </label>
-                        
+
                     </div>
 
 
