@@ -175,14 +175,14 @@ export function Layout(this: any, { session, children }: PropsWithChildren<Props
 
             <ThemeProvider defaultTheme="jbpslight">
 
-                <div className="flex flex-col min-h-screen " data-theme="jbpslight" >
+                <div className="flex flex-col min-h-screen " data-theme="system" >
 
 
                     {/* <HeaderScastiel access_token={''} token_type={''} user={null} {...searchBarProps} /> */}
 
                     <HeaderHyperUI access_token={''} token_type={''} user={null} />
 
-                    <main className="flex-1 p-4 border-x-2 border-base-100 bg-base-100 shadow-2xl prose sm:prose-sm md:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl">{children}</main>
+                    <main className="flex-1 p-4 border-x-2 border-base-100 bg-base-100 shadow-2xl prose  ">{children}</main>
 
                     <footer className="footer footer-center p-4 bg-base-300 text-base-content">
                         <div>
