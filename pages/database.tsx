@@ -17,15 +17,15 @@ export default function Home() {
             <p>
                 URL:
             </p>
+            <pre>https://jkgtjutgvzrgbdoaetaj.supabase.co</pre>
             <p>
-                <pre>https://jkgtjutgvzrgbdoaetaj.supabase.co</pre>
+                API KEY:
             </p>
-            <p>
-                API KEY:</p>
-            <p>
-                <pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImprZ3RqdXRndnpyZ2Jkb2FldGFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjA4MDI3OTYsImV4cCI6MTk3NjM3ODc5Nn0.bIGnhylUI_Qabmdj_B2_NZgDAJbgauUu7MnjoDL1hUE</pre>
-            </p>
+            <pre>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImprZ3RqdXRndnpyZ2Jkb2FldGFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjA4MDI3OTYsImV4cCI6MTk3NjM3ODc5Nn0.bIGnhylUI_Qabmdj_B2_NZgDAJbgauUu7MnjoDL1hUE</pre>
 
+            <p>
+                <Link href={`/slumdb_20220821.png`}><img src={`/slumdb_20220821.png`} /></Link>
+            </p>
 
         </Layout>
     );
