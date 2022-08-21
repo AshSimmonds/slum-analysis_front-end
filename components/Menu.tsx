@@ -13,7 +13,12 @@ export function Menu() {
 
     // console.log('Menu - session', session)
 
+    if (!session) return null
+
+
     return (
+
+
 
         <ul className="flex space-x-4">
             <>
