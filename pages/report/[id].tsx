@@ -11,6 +11,7 @@ import { HouseThumbCard } from '../../components/HouseCard'
 import { RoomCardToRename } from '../../components/RoomCard'
 import { HouseOptions } from '../../components/HouseList'
 import { supabase } from '../../utils/supabaseClient'
+import { GetConditions } from '../../utils/hooks/useAttribute'
 
 export interface Props {
     session: AuthSession
@@ -63,6 +64,7 @@ export default function InspectionForm({ session }: Props) {
 
 
 
+    const { conditions } = GetConditions(session)
 
 
 
@@ -113,6 +115,32 @@ export default function InspectionForm({ session }: Props) {
                     </table>
                 </div>
 
+
+
+
+
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th colSpan={2}>Condition grading legend</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Code</td>
+                                <td>Description</td>
+                            </tr>
+                            {conditions ? conditions.sort((a, b) => a.value! - b.value!).map((condition) => (
+                                <tr key={condition.id}>
+                                    <td>{condition.value}</td>
+                                    <td>{condition.description}</td>
+                                </tr>
+                            )) : null}
+                        </tbody>
+                    </table>
+                </div>
 
 
             </div>
