@@ -168,24 +168,34 @@ export default function InspectionForm({ session }: Props) {
                                 </tr>
 
 
-                                <tr>
-                                    <td rowSpan={3}>
-                                        attribute
-                                    </td>
-                                    <td>attribute condition</td>
-                                    <td colSpan={2}>notes</td>
-                                </tr>
-                                <tr>
-                                    <td>sub-attribute</td>
-                                    <td >sub-attribute value</td>
-                                    <td >notes</td>
-                                </tr>
-                                <tr>
-                                    <td>sub-attribute</td>
-                                    <td >sub-attribute value</td>
-                                    <td >notes</td>
-                                </tr>
+                                {room.attributes?.map((attribute) => (
 
+                                    <tr key={attribute.id}>
+                                        <td colSpan={4}>
+                                            <table className="table w-full">
+
+                                                <tr>
+                                                    <td rowSpan={3}>
+                                                        attribute
+                                                    </td>
+                                                    <td>attribute condition</td>
+                                                    <td colSpan={2}>notes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>sub-attribute</td>
+                                                    <td >sub-attribute value</td>
+                                                    <td >notes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>sub-attribute</td>
+                                                    <td >sub-attribute value</td>
+                                                    <td >notes</td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                ))}
 
 
 
