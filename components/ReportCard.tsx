@@ -4,7 +4,7 @@ import { HouseThumbCard } from './HouseCard';
 
 
 
-export function inspectionMagick(
+export function reportMagick(
     inspection: {
         id: number;
         created_at?: string | undefined;
@@ -15,7 +15,7 @@ export function inspectionMagick(
         rooms?: Array<Room> | undefined
     },
 ): JSX.Element {
-    return <InspectionCard
+    return <ReportCard
         key={inspection.id}
         id={inspection.id}
         created_at={inspection.created_at}
@@ -29,18 +29,19 @@ export function inspectionMagick(
 
 
 
+export default function ReportCard(inspection: Inspection) {
 
-export default function InspectionCard(inspection: Inspection) {
-
-    console.log('InspectionCard - inspection:', inspection)
+    console.log('ReportCard - inspection:', inspection)
 
     return (
         <div key={inspection.id} className='my-12 card bg-base-200 shadow-xl' >
+
             <figure className='h-36 bg-neutral' >
             </figure>
+
             <div className="card-body pt-0">
 
-                <h2><Link href={`/inspection/${inspection.id}`}>{'Inspection ID: ' + inspection.id || 'new'}</Link></h2>
+                <h2><Link href={`/report/${inspection.id}`}>{'Inspection ID: ' + inspection.id || 'new'}</Link></h2>
                 <p>Notes: {inspection.notes}</p>
                 <p>Inspection date: {inspection.inspection_date}</p>
 
@@ -52,7 +53,7 @@ export default function InspectionCard(inspection: Inspection) {
                 <h3><Link href={`/house/${inspection.house_id}`}>{'House ID: ' + inspection.house_id || 'new'}</Link></h3>
 
                 <div className="card-actions justify-end">
-                    <Link href={`/inspection/${inspection.id}`}>
+                    <Link href={`/report/${inspection.id}`}>
                         <button className="btn btn-primary">View</button>
                     </Link>
                 </div>

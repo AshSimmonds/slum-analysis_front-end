@@ -25,13 +25,6 @@ export default function InspectionForm({ session }: Props) {
 
     const { query, isReady } = useRouter()
 
-    // if (!isReady) {
-    //     return
-    //     <>
-    //         Loading
-    //     </>
-    // }
-
     const inspectionId = Number(query.id)
 
     const { loading, error, inspection } = GetInspection(session, inspectionId)
