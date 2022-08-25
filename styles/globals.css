@@ -83,8 +83,13 @@ body {
 /*}*/
 
 
-table, tr, td {
+table, tr, th, td {
     border: solid 1px grey !important;
+}
+
+th {
+    background-color: #333 !important;
+    color: white !important;
 }
 
 
