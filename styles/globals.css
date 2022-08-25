@@ -9,7 +9,7 @@
 */
 
 body {
-   font-family: Verdana, Geneva, Tahoma, sans-serif
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 h1,
@@ -18,7 +18,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .btn {
@@ -81,6 +81,12 @@ body {
 /*  background-position: 50% 50%;*/
 /*  background-img: */
 /*}*/
+
+
+table, tr, td {
+    border: solid 1px grey !important;
+}
+
 
 #announc3ment {
   --aug-clip-tl1: initial;

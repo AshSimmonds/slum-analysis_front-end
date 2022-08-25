@@ -143,6 +143,62 @@ export default function InspectionForm({ session }: Props) {
                 </div>
 
 
+
+
+
+
+                {inspection?.rooms?.map((room) => (
+
+                    <div key={room.id} className="overflow-x-auto">
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th colSpan={4}>Name: {room.name}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colSpan={4}>Type: {room.kind}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={4}>Description: {room.description}</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={4}>Notes: {room.notes}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td rowSpan={3}>
+                                        attribute
+                                    </td>
+                                    <td>attribute condition</td>
+                                    <td colSpan={2}>notes</td>
+                                </tr>
+                                <tr>
+                                    <td>sub-attribute</td>
+                                    <td >sub-attribute value</td>
+                                    <td >notes</td>
+                                </tr>
+                                <tr>
+                                    <td>sub-attribute</td>
+                                    <td >sub-attribute value</td>
+                                    <td >notes</td>
+                                </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                ))}
+
+
+
+
+
             </div>
 
         </Layout>
