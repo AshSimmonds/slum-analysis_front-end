@@ -22,7 +22,7 @@ export default function ReportList({ session }: Props) {
 
     return (
         <>
-            <h1>Inspections</h1>
+            <h1>Reports</h1>
             <h4>Total: {listOfInspections?.length}</h4>
 
             {listOfInspections}

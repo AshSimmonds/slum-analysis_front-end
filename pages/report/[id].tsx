@@ -176,21 +176,19 @@ export default function InspectionForm({ session }: Props) {
 
                                                 <tr>
                                                     <td rowSpan={3}>
-                                                        attribute
+                                                        #{attribute.id} | {attribute.attribute_type?.name}
                                                     </td>
-                                                    <td>attribute condition</td>
-                                                    <td colSpan={2}>notes</td>
+                                                    <td>condition: {attribute.condition_id}</td>
+                                                    <td colSpan={2}>{attribute.notes}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>sub-attribute</td>
-                                                    <td >sub-attribute value</td>
-                                                    <td >notes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>sub-attribute</td>
-                                                    <td >sub-attribute value</td>
-                                                    <td >notes</td>
-                                                </tr>
+
+                                                {attribute.traits?.map((trait) => (
+                                                    <tr key={trait.id} >
+                                                        <td>{trait.id}</td>
+                                                        <td>{trait.value}</td>
+                                                        <td>{trait.notes}</td>
+                                                    </tr>
+                                                ))}
 
                                             </table>
                                         </td>

@@ -54,6 +54,11 @@ const HeaderHyperUI = (session: AuthSession | null) => {
 
                             <ul className="flex items-center gap-6 text-sm">
                                 <li>
+                                    <Link className="" href="/report">
+                                        Reports
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link className="" href="/inspection">
                                         Inspections
                                     </Link>
@@ -83,11 +88,6 @@ const HeaderHyperUI = (session: AuthSession | null) => {
                                     </Link>
                                 </li>
 
-                                <li>
-                                    <Link className="" href="/Link06">
-                                        Link06
-                                    </Link>
-                                </li>
                             </ul>
                         </nav>
 
