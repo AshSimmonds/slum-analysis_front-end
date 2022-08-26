@@ -70,6 +70,7 @@ export function GetInspection(session: AuthSession, inspectionId: number) {
                         attributes:attribute(*,
                             attribute_type(*),
                             traits:attribute_trait(*)))
+                            type:attribute_trait_type(*))))
                     `)
                     .eq('id', inspectionId)
                     .single()

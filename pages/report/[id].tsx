@@ -184,7 +184,7 @@ export default function InspectionForm({ session }: Props) {
 
                                                 {attribute.traits?.map((trait) => (
                                                     <tr key={trait.id} >
-                                                        <td>{trait.id}</td>
+                                                        <td>ID: {trait.id} | Type: {trait.type?.name}</td>
                                                         <td>{trait.value}</td>
                                                         <td>{trait.notes}</td>
                                                     </tr>
