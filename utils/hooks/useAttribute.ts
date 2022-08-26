@@ -65,7 +65,7 @@ export function GetAttribute(session: AuthSession, attributeId: number) {
 
                 const { data, error, status } = await db
                     .attributes()
-                    .select('*')
+                    .select('*,traits:attribute_trait(*)')
                     .eq('id', attributeId)
                     .single()
 

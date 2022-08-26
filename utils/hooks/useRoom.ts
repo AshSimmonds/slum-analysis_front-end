@@ -67,7 +67,7 @@ export function GetRoom(session: AuthSession, roomId: number) {
 
                 const { data, error, status } = await db
                     .rooms()
-                    .select('*,room_type:room_type_id(name))')
+                    .select('*,room_type:room_type_id(name),attributes:attribute(*)')
                     .eq('id', roomId)
                     .single()
 

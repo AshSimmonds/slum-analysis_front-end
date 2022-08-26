@@ -69,7 +69,7 @@ export default function RoomForm({ session }: Props) {
 
     useEffect(() => {
 
-    // useEffectOnce(() => {
+        // useEffectOnce(() => {
         // console.log('i fire once');
 
         // const { loading, error, room } = GetRoom(session, roomId)
@@ -88,14 +88,14 @@ export default function RoomForm({ session }: Props) {
             setRoomTypeId(room.room_type_id!)
             setHouseId(room.house_id!)
             setPhotoUrl(room.photo_url!)
-        } 
+        }
 
         getShit()
 
-    //     return (
-    //         room
-    //     )
-    // });
+        //     return (
+        //         room
+        //     )
+        // });
 
 
     }, [id, room, roomId])
@@ -362,11 +362,30 @@ export default function RoomForm({ session }: Props) {
 
 
 
-                    <div>
-                        <AttributeList session={session} />
-                    </div>
+
+                    {room?.attributes?.map((attribute) => (
+                        <div key={attribute.id} className='my-4 card bg-base-300 shadow-2xl'>
+                            <div className="card-body">
+                                <div>
+                                    <Link href={`/attribute/${attribute.id}`}>Attribute ID: </Link>{attribute.id}
+                                </div>
+                                <div>
+                                    Notes: {attribute.notes}
+                                </div>
+                                <div>
+                                    Condition ID: {attribute.condition_id}
+                                </div>
+                                <div>
+                                    Room ID: {attribute.room_id}
+                                </div>
+                                <div>
+                                    Type ID: {attribute.attribute_type_id}
+                                </div>
 
 
+                            </div>
+                        </div>
+                    ))}
 
 
 

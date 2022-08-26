@@ -250,6 +250,29 @@ export default function AttributeForm({ session }: Props) {
 
 
 
+                    {attribute?.traits?.map((trait) => (
+                        <div key={trait.id} className='my-4 card bg-base-300 shadow-2xl'>
+                            <div className="card-body">
+                                <div>
+                                    <Link href={`/trait/${trait.id}`}>Trait ID: </Link>{trait.id}
+                                </div>
+                                <div>
+                                    Notes: {trait.notes}
+                                </div>
+                                <div>
+                                    Trait Type ID: {trait.attribute_trait_type_id}
+                                </div>
+                                <div>
+                                    Value: {trait.value}
+                                </div>
+                                <div>
+                                    Attribute ID: {trait.attribute_id}
+                                </div>
+
+
+                            </div>
+                        </div>
+                    ))}
 
 
 
