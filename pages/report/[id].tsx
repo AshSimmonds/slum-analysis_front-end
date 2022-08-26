@@ -158,7 +158,7 @@ export default function InspectionForm({ session }: Props) {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td colSpan={4}>Type: {room.kind}</td>
+                                    <td colSpan={4}>Type ID: {room.room_type_id}</td>
                                 </tr>
                                 <tr>
                                     <td colSpan={4}>Description: {room.description}</td>
@@ -176,7 +176,7 @@ export default function InspectionForm({ session }: Props) {
 
                                                 <tr>
                                                     <td rowSpan={3}>
-                                                        #{attribute.id} | {attribute.attribute_type?.name}
+                                                        #{attribute.id} | {attribute.type?.name}
                                                     </td>
                                                     <td>condition: {attribute.condition_id}</td>
                                                     <td colSpan={2}>{attribute.notes}</td>

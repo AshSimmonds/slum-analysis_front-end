@@ -1,10 +1,12 @@
 import type { definitions } from './supabase'
 
-export type Trait = definitions['attribute_trait'];
 export type TraitType = definitions['attribute_trait_type'];
+export type Trait = definitions['attribute_trait'] & {
+    type?: TraitType};
 
 export type Attribute = definitions['attribute'] & {
     traits?: Trait[];
+    type?: AttributeType;
 };
 export type AttributeType = definitions['attribute_type'];
 

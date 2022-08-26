@@ -19,6 +19,7 @@ function traitMagick(
         attribute_id?: number | undefined;
         attribute_trait_type_id?: number | undefined;
         value?: string | undefined;
+        trait_type?: TraitType | undefined;
     }): JSX.Element {
     return <TraitCard
         key={trait.id}
@@ -27,8 +28,9 @@ function traitMagick(
         created_at={trait.created_at}
         attribute_id={trait.attribute_id}
         attribute_trait_type_id={trait.attribute_trait_type_id}
-        value={trait.value}
-    />
+        value={trait.value} 
+        type={trait.trait_type}
+        />
 }
 
 
